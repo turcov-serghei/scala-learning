@@ -1,6 +1,5 @@
 # Lesson 0.2 Protocol — Higher-Kinded Types
 
-**Status:** ✅ Completed (theory + exercise + F[_] refactoring)
 **Date:** 2026-10-07–08 (two sessions)
 
 ---

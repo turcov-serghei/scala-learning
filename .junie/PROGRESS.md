@@ -2,18 +2,15 @@
 
 ## Current Position
 
-**Active lesson:** Lesson 0.3 — For-Comprehensions Decoded (COMPLETED)
-**Last position:** Additional exercise completed. All 7 AC passed. Code reviewed, sticking points recorded.
-**Next step:** Proceed to Lesson 0.4 (Monads Explained) with foldLeft warm-up exercises.
+**Active lesson:** Lesson 0.4 — Monads Explained (Theory in progress)
+**Last position:** Theory segment 3 confirmed (Why does it exist?)
+**Next step:** Deliver segment 4 (Monad laws)
 **Notes:**
-- Theory completed: All 9 parts delivered.
-- Follow-up exercises: All 4 passed.
-- Main exercise: Completed (7 AC).
-- Additional exercise: Completed (7 AC). User found it difficult — foldLeft is the #1 sticking point.
-- **Sticking points recorded in protocol:**
-  1. foldLeft — "кошмар", "очень грузная структура" (CRITICAL — needs reinforcement in Lesson 0.4)
-  2. For-comprehension на List в processBatch — непонятно как применить
-  3. Implicit case class vs Type Classes — интуитивно правильно, но сомневается
+- Resuming from Lesson 0.3 completion
+- foldLeft is CRITICAL weak spot from protocol — theory starts with foldLeft warm-up
+- Cats library (cats-core 2.13.0) added to build.sbt for practicing Monad[F].pure(x)
+- User question: "how to call pure?" — explained Option(x), List(x) are already pure in practice
+- User question: "explain process[F[_]: Monad] code" — explained F[_], context bound, implicitly, F.flatMap, F.pure with 3 concrete examples
 
 ---
 
@@ -33,7 +30,7 @@
 | ✅ | Lesson 0.1: Type Classes | 2026-10-07 | 2026-10-07 | Усвоено: trait, implicit resolution, case class без new, List(...), for-цикл |
 | ✅ | Lesson 0.2: Higher-Kinded Types | 2026-10-07 | 2026-10-07 | Усвоено: F[_], foldLeft, flatMap/map на Option, функциональный стиль vs Java-style |
 | ✅ | Lesson 0.3: For-Comprehensions Decoded | 2026-10-07 | 2026-10-09 | Усвоено: for-comprehension desugaring, guards, `<-` vs `=`, `<-` на List (итерация). Затык: foldLeft агрегация — требует закрепления в уроке 0.4 |
-| ⬜ | Lesson 0.4: Monads Explained | — | — | |
+| 🔄 | Lesson 0.4: Monads Explained | 2026-10-12 | — | |
 | ⬜ | Exercise 0: Optional → Option refactoring | — | — | |
 
 ---

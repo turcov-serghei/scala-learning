@@ -1,6 +1,5 @@
 # Lesson 0.3 Protocol — For-Comprehensions Decoded
 
-**Status:** ✅ Completed (theory + follow-up exercises completed, main exercise paused for next session)
 **Date:** 2026-10-08
 
 ---

@@ -1,6 +1,5 @@
 # Lesson 0.1 Protocol — Type Classes
 
-**Status:** ✅ Completed (theory + two exercises completed)
 **Date:** 2026-10-07 (previous session)
 
 ---

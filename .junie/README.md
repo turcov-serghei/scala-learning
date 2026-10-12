@@ -17,6 +17,7 @@ This project is a **Scala learning course** for a Java Senior Developer transiti
 ├── LEARNING_STYLE.md          ← Strict rules for teaching
 ├── SYLLABUS.md                ← Full course plan (Modules 0-6)
 ├── PROGRESS.md                ← Current progress tracker
+├── templates/                 ← Exercise code templates (Level 1/2/3 skeletons)
 ├── lessons/                   ← Theory files (lessonX_Y_theory.md), grows dynamically
 ├── lessons/protocols/         ← Learning history (lessonX_Y_protocol.md), grows dynamically
 └── plans/                     ← Historical artifacts from initial setup
@@ -45,6 +46,10 @@ Full course structure (Modules 0-6). Read directly for lesson topics and order.
 ### `.junie/PROGRESS.md` — Progress Tracker
 
 Current status of each lesson/exercise. **Start with the "Current Position" section** at the top — it contains the exact checkpoint (last theory part delivered, next step, key decisions) so you can resume from where the previous session stopped.
+
+### `.junie/templates/` — Exercise Code Templates
+
+Contains reusable code skeleton templates for exercise levels (Level 1/2/3). Referenced by "Code Template — 3 Levels on Request" rule in `LEARNING_STYLE.md` when the user requests a code template.
 
 ### `.junie/lessons/` — Lesson Theory Files
 
