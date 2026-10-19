@@ -93,8 +93,11 @@ Response MUST start directly with this structure:
 `## 4. Java → Scala (complete runnable examples)`
 `## 5. Step-by-step`
 `## 6. Important details`
-`## 7. Common mistakes`
+`## 7. Common mistakes (MUST include Java traps: var instead of val, new for case class, null instead of Option, if/else instead of pattern matching, mutable collections instead of immutable)`
 `## 8. Connection to the exercise (why the exercise uses this concept, WITHOUT giving the solution)`
+`## 9. Self-Check (verification on THIS lesson)`
+
+Ask 3–5 verification questions about this lesson's content before proceeding. The user must answer correctly before moving to the next lesson or exercise. If an answer is wrong or incomplete, reference the relevant section of this theory, ask the user to re-study, and have them answer again. Do not deliver new material until the self-check is passed.
 
 End response strictly with: "Что здесь непонятно?". Do not show exercise automatically.
 
@@ -157,6 +160,11 @@ Verify compilation by running `sbt compile` after creating the file. If compilat
 **If any check fails → DO NOT proceed with new content. Fix the violation first.**
 
 **Why this rule exists:** The model tends to forget rules when context is long. This rule forces a mandatory pause before every response to verify compliance. The checklist is grouped by context (Communication / Content / Flow) so the model checks only relevant rules for the current action type, reducing cognitive load while maintaining coverage.
+
+19. **Self-Check Before New Theory — Mandatory**:
+**Before delivering any new theory segment, you MUST conduct a self-check on previously completed lessons**. Ask 1–2 questions covering material the user has already learned — from `.junie/self-check-lessons-*.md` if it exists, or formulated by you based on completed lessons. **If the user answers incorrectly or incompletely, you are FORBIDDEN from showing new theory.** Reference the specific lesson section for review, ask the user to re-study, and answer again. Only proceed to new content after the self-check is passed.
+
+**Why this rule exists:** Prevents the illusion of understanding. Verifies retention between sessions before stacking new concepts on potentially shaky foundations.
 
 ## Constraints
 
