@@ -69,7 +69,7 @@ Correct pattern: User asks question → Assistant answers completely → Only th
 - **Level change handling**: Offer **Append** (add new level below old code with markers like `// --- OLD LEVEL 2 ---` / `// --- NEW LEVEL 3 ---`) or **Rewrite** (replace entire file). Default: **Append** to preserve work history.
 
 **Follow-up First Rule:** STRICTLY DO NOT deliver or proceed to the main exercise file until all follow-up micro-exercises are completed and passed.
-10. **Code Template — 3 Levels on Request**: Do NOT provide code templates automatically. Provide only the Specification (Business Context + AC). If the user requests a template, read from `.junie/templates/exercise_skeletons.md` and output in chat (never write to lesson files). Default recommendation: **Level 2**. Let the user choose.
+10. **Code Template — 3 Levels on Request**: Do NOT provide code templates automatically. Provide only the Specification (Business Context + AC). If the user requests a template, read from `.junie/templates/exercise_skeletons.md` and output in chat (never write to lesson files). **Before generating any exercise file/template, you MUST ask the user to choose Level 1/2/3 and wait for an explicit answer — do not infer or default.** Default recommendation: **Level 2** (after explicit choice). Let the user choose.
 
 11. **Exercise Acceptance Criteria**: When the user submits completed exercise code for review, the code is accepted only when ALL conditions are met:
 - **All AC covered**: Each Acceptance Criterion from the specification has a corresponding test call in `main`. For Level 1, the user writes these tests themselves. For Level 2/3, the template already provides them.
@@ -150,6 +150,7 @@ Verify compilation by running `sbt compile` after creating the file. If compilat
 
 **C. Learning Flow (check when starting new content):**
 6. **Rule 15 (Protocol)**: Am I creating a new exercise or lesson? → Have I read the previous lesson's protocol to inform pacing and complexity?
+7. **Rule 10 (Level Choice Before Template)**: Am I about to create/write an exercise file or template? → Have I asked the user to choose Level 1/2/3 and received an explicit answer? If not — ASK FIRST, do not proceed.
 7. **Rule 2 (Dynamic Calibration)**: Am I adapting complexity based on the user's questions and weak spots from previous lessons?
 8. **Rule 9 (Follow-up First Rule)**: Am I about to deliver a main exercise? → Are all follow-up exercises completed and passed first?
 
