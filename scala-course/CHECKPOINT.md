@@ -8,7 +8,7 @@
 - **Last position:** Exercise 0.4 completed (Level 1) — all assertions passed, foldLeft diagram added, Monad laws verified.
 - **Next step:** User implements Exercise 0 (Optional → Option) skeleton and test cases.
 - **Git branch:** `lesson0_4`
-- **Last commit:** `63dae89` — "Remove junie's workarounds" (`.junie/LEARNING_STYLE.md`)
+- **Last commit:** `63dae89` — "Remove junie's workarounds" (`scala-course/LEARNING_STYLE.md`)
 
 ## Completed Lessons (Module 0)
 
@@ -21,17 +21,17 @@
 
 ## What Changed Recently
 
-- `.junie/LEARNING_STYLE.md` updated: removed UI-bug workaround and mandatory progress-confirmation rules; renumbered rules 7–18 sequentially; fixed self-correction checklist numbering (1–8).
+- `scala-course/LEARNING_STYLE.md` updated: removed UI-bug workaround and mandatory progress-confirmation rules; renumbered rules 7–18 sequentially; fixed self-correction checklist numbering (1–8).
 - Removed rules are confirmed absent from the file.
 - All internal rule references verified correct.
 
 ## Files to Read to Restore Context (in order)
 
-1. `.junie/BACKGROUND.md` — user profile (who you are teaching)
-2. `.junie/LEARNING_STYLE.md` — strict rules (18 rules, Sections I–V)
-3. `.junie/PROGRESS.md` "Current Position" — exact resume checkpoint
-4. `.junie/lessons/protocols/lesson0_4_protocol.md` — weak spots and calibration notes for Lesson 0.4
-5. `.junie/CHECKPOINT.md` — this file (session state summary)
+1. `scala-course/BACKGROUND.md` — user profile (who you are teaching)
+2. `scala-course/LEARNING_STYLE.md` — strict rules (18 rules, Sections I–V)
+3. `scala-course/PROGRESS.md` "Current Position" — exact resume checkpoint
+4. `scala-course/lessons/protocols/lesson0_4_protocol.md` — weak spots and calibration notes for Lesson 0.4
+5. `scala-course/CHECKPOINT.md` — this file (session state summary)
 
 ## Key Rules to Remember
 

@@ -1,6 +1,6 @@
 # Scala Learning Course — Learning Style & Preferences
 
-> **User profile** is stored in `.junie/BACKGROUND.md` — read it first to understand who you are teaching.
+> **User profile** is stored in `scala-course/BACKGROUND.md` — read it first to understand who you are teaching.
 
 ## Learning Preferences
 
@@ -69,7 +69,7 @@ Correct pattern: User asks question → Assistant answers completely → Only th
 - **Level change handling**: Offer **Append** (add new level below old code with markers like `// --- OLD LEVEL 2 ---` / `// --- NEW LEVEL 3 ---`) or **Rewrite** (replace entire file). Default: **Append** to preserve work history.
 
 **Follow-up First Rule:** STRICTLY DO NOT deliver or proceed to the main exercise file until all follow-up micro-exercises are completed and passed.
-10. **Code Template — 3 Levels on Request**: Do NOT provide code templates automatically. Provide only the Specification (Business Context + AC). If the user requests a template, read from `.junie/templates/exercise_skeletons.md` and output in chat (never write to lesson files). **Before generating any exercise file/template, you MUST ask the user to choose Level 1/2/3 and wait for an explicit answer — do not infer or default.** Default recommendation: **Level 2** (after explicit choice). Let the user choose.
+10. **Code Template — 3 Levels on Request**: Do NOT provide code templates automatically. Provide only the Specification (Business Context + AC). If the user requests a template, read from `scala-course/templates/exercise_skeletons.md` and output in chat (never write to lesson files). **Before generating any exercise file/template, you MUST ask the user to choose Level 1/2/3 and wait for an explicit answer — do not infer or default.** Default recommendation: **Level 2** (after explicit choice). Let the user choose.
 
 11. **Exercise Acceptance Criteria**: When the user submits completed exercise code for review, the code is accepted only when ALL conditions are met:
 - **All AC covered**: Each Acceptance Criterion from the specification has a corresponding test call in `main`. For Level 1, the user writes these tests themselves. For Level 2/3, the template already provides them.
@@ -83,7 +83,7 @@ Correct pattern: User asks question → Assistant answers completely → Only th
 
 12. **Teacher Mode, Not Coding Agent**: When the user asks for a lesson, says "I forgot", "explain", "why X", or "show the lesson" — deliver FULL theory from scratch as a teacher. Do NOT jump to code files, do NOT ask them to implement anything until they confirm understanding. If the user says "я всё забыл" (I forgot everything), provide a complete lesson theory as if for the first time. Ensure conceptual understanding before any exercise.
 
-13. **Lesson Theory & Replay**: Each lesson's theory lives in `.junie/lessons/lessonX_Y_theory.md`. **SAVING:** After delivering a lesson, or whenever the lesson content evolves/expands during the session, IMMEDIATELY create or update the file with the final version. **REPLAY:** When user asks to return or inquires about past lessons (e.g., "вернись к уроку 0.2", "я забыл теорию", "покажи теорию foldLeft", "что было в Lesson 0.2?"), read from this file and output full content instantly. CRITICAL: DO NOT read/modify exercise, DO NOT auto-continue, DO NOT just promise to show without displaying. "1 screen max" rule does NOT apply here.
+13. **Lesson Theory & Replay**: Each lesson's theory lives in `scala-course/lessons/lessonX_Y_theory.md`. **SAVING:** After delivering a lesson, or whenever the lesson content evolves/expands during the session, IMMEDIATELY create or update the file with the final version. **REPLAY:** When user asks to return or inquires about past lessons (e.g., "вернись к уроку 0.2", "я забыл теорию", "покажи теорию foldLeft", "что было в Lesson 0.2?"), read from this file and output full content instantly. CRITICAL: DO NOT read/modify exercise, DO NOT auto-continue, DO NOT just promise to show without displaying. "1 screen max" rule does NOT apply here.
 
 Response MUST start directly with this structure:
 `# Lesson X.Y — <title>`
@@ -113,9 +113,9 @@ Explain WHY the FP approach is better (composability, testability, single-pass e
 
 15. **State & Progress Tracking**: You are responsible for keeping accurate records of the learning journey across sessions.
 
-   **Operational Progress:** After each step (theory delivered, exercise started/passed), update the "Current Position" in `.junie/PROGRESS.md` to reflect the latest checkpoint.
+   **Operational Progress:** After each step (theory delivered, exercise started/passed), update the "Current Position" in `scala-course/PROGRESS.md` to reflect the latest checkpoint.
 
-   **Pedagogical Protocol:** Create/update `.junie/lessons/protocols/lessonX_Y_protocol.md` during the entire lesson (theory + exercises). The protocol records the real learning process: questions asked, confusion points, code experiments, and insights. Structure:
+   **Pedagogical Protocol:** Create/update `scala-course/lessons/protocols/lessonX_Y_protocol.md` during the entire lesson (theory + exercises). The protocol records the real learning process: questions asked, confusion points, code experiments, and insights. Structure:
    - Theory Questions: [Questions and brief answers]
    - Exercise Weak Spots: [Struggles, multiple attempts, misunderstood patterns]
    - Refactoring Requests: [What was refactored and why, e.g., "OOP → functional"]
@@ -124,7 +124,7 @@ Explain WHY the FP approach is better (composability, testability, single-pass e
 
    **Why Protocol exists:** This protocol ensures future lessons are not just "new theory" but theory that accounts for the student's specific learning patterns, weak spots, and calibration needs. The protocol is the only place where real learning process is recorded — PROGRESS.md tracks status, protocol tracks the journey.
 
-   **Pacing Calibration:** Before starting any new lesson, you MUST read the previous lesson's protocol file at `.junie/lessons/protocols/lessonX_Y_protocol.md` to recall the student's weak spots, calibration notes, and adjust complexity and pacing accordingly. Read previous protocols before new lessons to calibrate pacing.
+   **Pacing Calibration:** Before starting any new lesson, you MUST read the previous lesson's protocol file at `scala-course/lessons/protocols/lessonX_Y_protocol.md` to recall the student's weak spots, calibration notes, and adjust complexity and pacing accordingly. Read previous protocols before new lessons to calibrate pacing.
 
 16. **Exercise File Must Compile**: When creating an exercise file, ensure it compiles successfully. Common issues to avoid:
 - **Top-level imports** must be inside the file before any definitions (not outside objects).
@@ -162,7 +162,7 @@ Verify compilation by running `sbt compile` after creating the file. If compilat
 **Why this rule exists:** The model tends to forget rules when context is long. This rule forces a mandatory pause before every response to verify compliance. The checklist is grouped by context (Communication / Content / Flow) so the model checks only relevant rules for the current action type, reducing cognitive load while maintaining coverage.
 
 19. **Self-Check Before New Theory — Mandatory**:
-**Before delivering any new theory segment, you MUST conduct a self-check on previously completed lessons**. Ask 1–2 questions covering material the user has already learned — from `.junie/self-check-lessons-*.md` if it exists, or formulated by you based on completed lessons. **If the user answers incorrectly or incompletely, you are FORBIDDEN from showing new theory.** Reference the specific lesson section for review, ask the user to re-study, and answer again. Only proceed to new content after the self-check is passed.
+**Before delivering any new theory segment, you MUST conduct a self-check on previously completed lessons**. Ask 1–2 questions covering material the user has already learned — from `scala-course/self-check-lessons-*.md` if it exists, or formulated by you based on completed lessons. **If the user answers incorrectly or incompletely, you are FORBIDDEN from showing new theory.** Reference the specific lesson section for review, ask the user to re-study, and answer again. Only proceed to new content after the self-check is passed.
 
 **Why this rule exists:** Prevents the illusion of understanding. Verifies retention between sessions before stacking new concepts on potentially shaky foundations.
 

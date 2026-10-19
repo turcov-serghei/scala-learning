@@ -34,10 +34,10 @@ Based on your quiz answers, here's your calibrated profile:
 
 ### Course Structure
 
-**Portable Markdown Files** (stored in `.junie/` for persistence):
-- `.junie/SYLLABUS.md` — full course agenda with modules, lessons, and exercises
-- `.junie/PROGRESS.md` — tracker for completed lessons, exercises, and notes
-- `.junie/LEARNING_STYLE.md` — your preferences, constraints, and background
+**Portable Markdown Files** (stored in `scala-course/` for persistence):
+- `scala-course/SYLLABUS.md` — full course agenda with modules, lessons, and exercises
+- `scala-course/PROGRESS.md` — tracker for completed lessons, exercises, and notes
+- `scala-course/LEARNING_STYLE.md` — your preferences, constraints, and background
 
 ### Learning Approach: Refactoring & Evolution
 
@@ -109,9 +109,9 @@ Based on your quiz answers, here's your calibrated profile:
 
 ### ✓ Step 1: Create course structure and progress tracking files
 Set up the portable Markdown files for the course:
-- Create `.junie/SYLLABUS.md` with the full module outline (including Module 0: Functional Types Primer), lessons, and exercise descriptions.
-- Create `.junie/PROGRESS.md` with a tracker for completed lessons, exercises, and notes.
-- Create `.junie/LEARNING_STYLE.md` with your preferences, background, and constraints.
+- Create `scala-course/SYLLABUS.md` with the full module outline (including Module 0: Functional Types Primer), lessons, and exercise descriptions.
+- Create `scala-course/PROGRESS.md` with a tracker for completed lessons, exercises, and notes.
+- Create `scala-course/LEARNING_STYLE.md` with your preferences, background, and constraints.
 - These files are tool-agnostic and portable across AI tools (Cursor, VS Code, ChatGPT, Claude).
 
 ### * Step 2: Deliver Module 0: Functional Types Primer (Java-first explanations)

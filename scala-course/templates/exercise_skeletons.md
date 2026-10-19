@@ -1,6 +1,6 @@
 # Exercise Code Templates
 
-This file contains the code templates for exercise levels. Referenced by Rule 11 in `.junie/LEARNING_STYLE.md`.
+This file contains the code templates for exercise levels. Referenced by Rule 11 in `scala-course/LEARNING_STYLE.md`.
 
 ---
 

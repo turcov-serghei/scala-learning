@@ -11,7 +11,7 @@ This project is a **Scala learning course** for a Java Senior Developer transiti
 ## Project Structure
 
 ```
-.junie/
+scala-course/
 ├── README.md                  ← You are here — guide for AI agents
 ├── BACKGROUND.md              ← User profile (Java Senior, experience, skill levels) — READ FIRST
 ├── LEARNING_STYLE.md          ← Strict rules for teaching
@@ -31,35 +31,35 @@ Exercise files (`src/main/scala/lesson*.scala`) are created per-lesson and are n
 
 ## File Descriptions
 
-### `.junie/BACKGROUND.md` — **READ FIRST**
+### `scala-course/BACKGROUND.md` — **READ FIRST**
 
 Contains the user's profile: role (Java Senior Developer), experience, domain knowledge, and calibrated skill levels table. This file is the single source of truth for who you are teaching. Read it before LEARNING_STYLE.md to understand the context.
 
-### `.junie/LEARNING_STYLE.md` — **MUST READ SECOND**
+### `scala-course/LEARNING_STYLE.md` — **MUST READ SECOND**
 
 Contains strict rules for teaching. Read this file directly for full rule details — do not summarize them here to avoid duplication.
 
-### `.junie/SYLLABUS.md` — Course Plan
+### `scala-course/SYLLABUS.md` — Course Plan
 
 Full course structure (Modules 0-6). Read directly for lesson topics and order.
 
-### `.junie/PROGRESS.md` — Progress Tracker
+### `scala-course/PROGRESS.md` — Progress Tracker
 
 Current status of each lesson/exercise. **Start with the "Current Position" section** at the top — it contains the exact checkpoint (last theory part delivered, next step, key decisions) so you can resume from where the previous session stopped.
 
-### `.junie/CHECKPOINT.md` — Session Checkpoint
+### `scala-course/CHECKPOINT.md` — Session Checkpoint
 
 **Created for new-session context restoration.** Contains a concise summary of the current state: active exercise, last completed position, next step, git branch, last commit, and the ordered list of files to read to restore context. **Read this file first when starting a new session** to quickly reload the agent context without replaying the full chat history.
 
-### `.junie/templates/` — Exercise Code Templates
+### `scala-course/templates/` — Exercise Code Templates
 
 Contains reusable code skeleton templates for exercise levels (Level 1/2/3). Referenced by "Code Template — 3 Levels on Request" rule in `LEARNING_STYLE.md` when the user requests a code template.
 
-### `.junie/lessons/` — Lesson Theory Files
+### `scala-course/lessons/` — Lesson Theory Files
 
 Each lesson has a Markdown file containing the complete theory delivered during the session. Files are updated if the lesson content evolves.
 
-### `.junie/lessons/protocols/` — Learning History
+### `scala-course/lessons/protocols/` — Learning History
 
 Protocol files record the learning journey for each lesson:
 - **Theory Questions**: Questions asked during theory (reveal conceptual gaps or deep understanding)
@@ -70,7 +70,7 @@ Protocol files record the learning journey for each lesson:
 
 **These protocols are the basis for calibrating future lessons.** Before starting a new lesson, read the previous lesson's protocol.
 
-### `.junie/plans/` — Session Plans
+### `scala-course/plans/` — Session Plans
 
 Historical artifacts from Junie's internal task tracking. Not needed for continuing the course.
 
@@ -82,10 +82,10 @@ Historical artifacts from Junie's internal task tracking. Not needed for continu
 
 When starting a new session, follow these steps:
 
-1. **Read `.junie/BACKGROUND.md`** — Understand who you are teaching (Java Senior, experience, skill levels).
-2. **Read `.junie/LEARNING_STYLE.md`** — Understand the strict rules before doing anything.
-3. **Read `.junie/PROGRESS.md` "Current Position" section** — This is your resume checkpoint. It tells you the exact last position (theory part delivered, next step, key decisions) so you can continue from where the previous session stopped.
-4. **Read `.junie/lessons/protocols/`** — Review recent protocols to understand user's learning patterns, weak spots, and strengths.
-5. **Check `.junie/SYLLABUS.md`** — Know the full course structure and where we are.
+1. **Read `scala-course/BACKGROUND.md`** — Understand who you are teaching (Java Senior, experience, skill levels).
+2. **Read `scala-course/LEARNING_STYLE.md`** — Understand the strict rules before doing anything.
+3. **Read `scala-course/PROGRESS.md` "Current Position" section** — This is your resume checkpoint. It tells you the exact last position (theory part delivered, next step, key decisions) so you can continue from where the previous session stopped.
+4. **Read `scala-course/lessons/protocols/`** — Review recent protocols to understand user's learning patterns, weak spots, and strengths.
+5. **Check `scala-course/SYLLABUS.md`** — Know the full course structure and where we are.
 6. **Resume from checkpoint** — Follow the "Next step" from Current Position. If a lesson is `🔄 In progress`, continue from the checkpoint. If the last lesson is `✅ Completed`, proceed to the next lesson in the syllabus.
 
