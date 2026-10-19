@@ -2,15 +2,14 @@
 
 ## Current Position
 
-**Active lesson:** Lesson 0.4 — Monads Explained (Theory in progress)
-**Last position:** Theory segment 3 confirmed (Why does it exist?)
-**Next step:** Deliver segment 4 (Monad laws)
+**Active exercise:** Exercise 0 — Optional → Option refactoring (Main Exercise)
+**Last position:** Exercise 0.4 completed (Level 1) — all assertions passed, foldLeft diagram added, Monad laws verified.
+**Next step:** User implements Exercise 0 (Optional → Option) skeleton and test cases.
 **Notes:**
-- Resuming from Lesson 0.3 completion
-- foldLeft is CRITICAL weak spot from protocol — theory starts with foldLeft warm-up
-- Cats library (cats-core 2.13.0) added to build.sbt for practicing Monad[F].pure(x)
-- User question: "how to call pure?" — explained Option(x), List(x) are already pure in practice
-- User question: "explain process[F[_]: Monad] code" — explained F[_], context bound, implicitly, F.flatMap, F.pure with 3 concrete examples
+- Exercise 0.4 marked ✅ Completed; ready to start Exercise 0.
+- Resuming from Lesson 0.4 completion
+- foldLeft visual diagram and Monad laws verified in Exercise 0.4
+- Cats library (cats-core 2.13.0) remains in build.sbt
 
 ---
 
@@ -30,8 +29,8 @@
 | ✅ | Lesson 0.1: Type Classes | 2026-10-07 | 2026-10-07 | Усвоено: trait, implicit resolution, case class без new, List(...), for-цикл |
 | ✅ | Lesson 0.2: Higher-Kinded Types | 2026-10-07 | 2026-10-07 | Усвоено: F[_], foldLeft, flatMap/map на Option, функциональный стиль vs Java-style |
 | ✅ | Lesson 0.3: For-Comprehensions Decoded | 2026-10-07 | 2026-10-09 | Усвоено: for-comprehension desugaring, guards, `<-` vs `=`, `<-` на List (итерация). Затык: foldLeft агрегация — требует закрепления в уроке 0.4 |
-| 🔄 | Lesson 0.4: Monads Explained | 2026-10-12 | — | |
-| ⬜ | Exercise 0: Optional → Option refactoring | — | — | |
+| ✅ | Lesson 0.4: Monads Explained | 2026-10-12 | 2026-10-15 | Теория и упражнения завершены. Main Exercise 0.4 (Level 1) успешно пройден. |
+| 🔄 | Exercise 0: Optional → Option refactoring | 2026-10-15 | — | Started main exercise implementation. |
 
 ---
 

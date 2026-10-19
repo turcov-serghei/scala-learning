@@ -47,7 +47,8 @@ object lesson0_4_followup_exercises {
   // Начальное значение аккумулятора: 0
   // Операция: (acc, item) => acc + item
   //
-  def sumNumbers(numbers: List[Int]): Int = ???
+  def sumNumbers(numbers: List[Int]): Int =
+    numbers.foldLeft(0) {(acc, item) => acc + item}
 
   // AC-1: sumNumbers(List(1, 2, 3, 4)) == 10
   // AC-2: sumNumbers(List.empty[Int]) == 0
@@ -76,7 +77,8 @@ object lesson0_4_followup_exercises {
   // Начальное значение аккумулятора: 1 (не 0!)
   // Операция: (acc, item) => acc * item
   //
-  def productNumbers(numbers: List[Int]): Int = ???
+  def productNumbers(numbers: List[Int]): Int =
+    numbers.foldLeft(1) {(acc, item) => acc * item}
 
   // AC-4: productNumbers(List(1, 2, 3, 4)) == 24
   // AC-5: productNumbers(List.empty[Int]) == 1
@@ -109,7 +111,8 @@ object lesson0_4_followup_exercises {
   // Начальное значение: List.empty[String]
   // Операция: добавить item.toUpperCase() в конец списка
   //
-  def toUpperCaseList(words: List[String]): List[String] = ???
+  def toUpperCaseList(words: List[String]): List[String] =
+    words.foldLeft(List.empty[String]) { (acc, item) => acc :+ item.toUpperCase}
 
   // AC-7: toUpperCaseList(List("a", "b", "c")) == List("A", "B", "C")
   // AC-8: toUpperCaseList(List.empty[String]) == List()
@@ -158,7 +161,8 @@ object lesson0_4_followup_exercises {
   // Ключевое понимание: Как только acc стал None, он остаётся None.
   // flatMap на None всегда даёт None — цепочка "разорвана".
   //
-  def aggregateOptions(items: List[Option[Int]]): Option[List[Int]] = ???
+  def aggregateOptions(items: List[Option[Int]]): Option[List[Int]] =
+    items.foldLeft(Option(List.empty[Int])) {(acc, item) => acc.flatMap(list => item.map(i => list :+ i))}
 
   // AC-9: aggregateOptions(List(Some(1), Some(2), Some(3))) == Some(List(1, 2, 3))
   // AC-10: aggregateOptions(List.empty[Option[Int]]) == Some(List())
@@ -185,7 +189,13 @@ object lesson0_4_followup_exercises {
   // Реализуйте aggregateOptionsForComp используя foldLeft + for-comprehension.
   // Результат должен быть идентичен aggregateOptions.
   //
-  def aggregateOptionsForComp(items: List[Option[Int]]): Option[List[Int]] = ???
+  def aggregateOptionsForComp(items: List[Option[Int]]): Option[List[Int]] =
+    items.foldLeft(Option(List.empty[Int])) { (acc, items) =>
+      for {
+        list <- acc
+        item <- items
+      } yield list :+ item
+    }
 
   // AC-13: aggregateOptionsForComp(List(Some(1), Some(2))) == Some(List(1, 2))
   // AC-14: aggregateOptionsForComp(List(Some(1), None)) == None
@@ -207,7 +217,8 @@ object lesson0_4_followup_exercises {
   def leftIdentitySideA(x: Int): Option[Int] =
     Some(x).flatMap(a => Some(a * 2))
 
-  def leftIdentitySideB(x: Int): Option[Int] = ???
+  def leftIdentitySideB(x: Int): Option[Int] =
+    Some(x * 2)
   // Подсказка: f(x) где f = (a: Int) => Some(a * 2)
 
   // AC-15: leftIdentitySideA(5) == leftIdentitySideB(5)
@@ -231,7 +242,8 @@ object lesson0_4_followup_exercises {
   def rightIdentitySideA(opt: Option[Int]): Option[Int] =
     opt.flatMap(x => Some(x))
 
-  def rightIdentitySideB(opt: Option[Int]): Option[Int] = ???
+  def rightIdentitySideB(opt: Option[Int]): Option[Int] = identity(opt)
+
   // Подсказка: Right Identity говорит что результат == fa
 
   // AC-17: rightIdentitySideA(Some(5)) == rightIdentitySideB(Some(5))
@@ -243,36 +255,43 @@ object lesson0_4_followup_exercises {
 
   def main(args: Array[String]): Unit = {
 
-    // === Micro-Exercise 1: sumNumbers ===
-    // assert(sumNumbers(List(1, 2, 3, 4)) == 10)
-    // assert(sumNumbers(List.empty[Int]) == 0)
-    // assert(sumNumbers(List(5)) == 5)
+    println("=== Micro-Exercise 1: sumNumbers ===")
+      assert(sumNumbers(List(1, 2, 3, 4)) == 10)
+      assert(sumNumbers(List.empty[Int]) == 0)
+      assert(sumNumbers(List(5)) == 5)
+    println("=== Micro-Exercise 1: sumNumbers === passed")
 
-    // === Micro-Exercise 2: productNumbers ===
-    // assert(productNumbers(List(1, 2, 3, 4)) == 24)
-    // assert(productNumbers(List.empty[Int]) == 1)
-    // assert(productNumbers(List(7)) == 7)
+    println("=== Micro-Exercise 2: productNumbers ===")
+      assert(productNumbers(List(1, 2, 3, 4)) == 24)
+      assert(productNumbers(List.empty[Int]) == 1)
+      assert(productNumbers(List(7)) == 7)
+    println("=== Micro-Exercise 2: productNumbers === passed")
 
-    // === Micro-Exercise 3: toUpperCaseList ===
-    // assert(toUpperCaseList(List("a", "b", "c")) == List("A", "B", "C"))
-    // assert(toUpperCaseList(List.empty[String]) == List())
+    println("=== Micro-Exercise 3: toUpperCaseList ===")
+    assert(toUpperCaseList(List("a", "b", "c")) == List("A", "B", "C"))
+    assert(toUpperCaseList(List.empty[String]) == List())
+    println("=== Micro-Exercise 3: toUpperCaseList ===passed")
 
-    // === Micro-Exercise 4: aggregateOptions ===
-    // assert(aggregateOptions(List(Some(1), Some(2), Some(3))) == Some(List(1, 2, 3)))
-    // assert(aggregateOptions(List.empty[Option[Int]]) == Some(List()))
-    // assert(aggregateOptions(List(Some(1), None, Some(3))) == None)
-    // assert(aggregateOptions(List(None)) == None)
+    println("=== Micro-Exercise 4: aggregateOptions ===")
+    assert(aggregateOptions(List(Some(1), Some(2), Some(3))) == Some(List(1, 2, 3)))
+    assert(aggregateOptions(List.empty[Option[Int]]) == Some(List()))
+    assert(aggregateOptions(List(Some(1), None, Some(3))) == None)
+    assert(aggregateOptions(List(None)) == None)
+    println("=== Micro-Exercise 4: aggregateOptions ===passed")
 
-    // === Micro-Exercise 5: aggregateOptionsForComp ===
-    // assert(aggregateOptionsForComp(List(Some(1), Some(2))) == Some(List(1, 2)))
-    // assert(aggregateOptionsForComp(List(Some(1), None)) == None)
+    println("=== Micro-Exercise 5: aggregateOptionsForComp ===")
+    assert(aggregateOptionsForComp(List(Some(1), Some(2))) == Some(List(1, 2)))
+    assert(aggregateOptionsForComp(List(Some(1), None)) == None)
+    println("=== Micro-Exercise 5: aggregateOptionsForComp ===passed")
 
-    // === Micro-Exercise 6: Left Identity ===
-    // assert(leftIdentitySideA(5) == leftIdentitySideB(5))
-    // assert(leftIdentitySideA(0) == leftIdentitySideB(0))
+    println("===Micro-Exercise 6: Left Identity ===")
+    assert(leftIdentitySideA(5) == leftIdentitySideB(5))
+    assert(leftIdentitySideA(0) == leftIdentitySideB(0))
+    println("===Micro-Exercise 6: Left Identity ===passed")
 
-    // === Micro-Exercise 7: Right Identity ===
-    // assert(rightIdentitySideA(Some(5)) == rightIdentitySideB(Some(5)))
-    // assert(rightIdentitySideA(None) == rightIdentitySideB(None))
+    println("=== Micro-Exercise 7: Right Identity ===")
+    assert(rightIdentitySideA(Some(5)) == rightIdentitySideB(Some(5)))
+    assert(rightIdentitySideA(None) == rightIdentitySideB(None))
+    println("=== Micro-Exercise 7: Right Identity ===passed")
   }
 }

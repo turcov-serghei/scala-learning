@@ -192,22 +192,43 @@ Step 4:  item = ... (не важно, acc уже None)
 
 **Ключевое понимание:** `flatMap` на `None` всегда даёт `None`. Как только аккумулятор стал `None`, он остаётся `None` — цепочка "разорвана".
 
-### Упрощение: `item.map(a => list :+ a)`
+### Упрощение: тело foldLeft
+
+**foldLeft не заменяется for-comprehension.** Заменяется только **тело** foldLeft — выражение внутри `{ ... }`.
 
 Вместо:
 ```scala
-acc.flatMap(list => item.map(a => list :+ a))
+List(Some(1), Some(2), Some(3)).foldLeft(Some(List.empty[Int])) {
+  (acc, item) => acc.flatMap(list => item.map(a => list :+ a))
+}
 ```
 
 Можно записать как:
 ```scala
-for {
-  list <- acc      // извлекаем список из Option
-  a <- item        // извлекаем элемент из Option
-} yield list :+ a  // добавляем элемент в список
+List(Some(1), Some(2), Some(3)).foldLeft(Some(List.empty[Int])) {
+  (acc, item) =>
+    for {
+      list <- acc      // извлекаем список из Option
+      a <- item        // извлекаем элемент из Option
+    } yield list :+ a  // добавляем элемент в список
+}
 ```
 
-**For-comprehension делает foldLeft читаемым.** Это не "кошмар", а просто цикл с аккумулятором, где аккумулятор — `Option[List[A]]`.
+**foldLeft остался.** Изменилось только тело — с `flatMap` + `map` на for-comprehension.
+
+**Java аналог:**
+```java
+// До: Stream API внутри reduce
+numbers.stream().reduce(0, (acc, item) -> acc.stream().map(...).reduce(...));
+
+// После: обычный код внутри того же reduce
+numbers.stream().reduce(0, (acc, item) -> {
+    // for-comprehension заменила flatMap + map
+    // но reduce (foldLeft) остался
+});
+```
+
+**For-comprehension делает тело foldLeft читаемым.** Это не "кошмар", а просто цикл с аккумулятором, где аккумулятор — `Option[List[A]]`.
 
 ## 7. Common mistakes
 
@@ -237,4 +258,4 @@ foldLeft — это цикл с аккумулятором. Java's `Stream.reduc
 - **Вы уже знаете Monads:** `Optional`, `CompletableFuture`, `Mono`, `Flux`
 - **Scala унифицирует** этот паттерн через `F[_]` и type classes
 - **foldLeft** — это цикл с аккумулятором, не "кошмар"
-- **For-comprehension** делает foldLeft с Monad читаемым
+- **For-comprehension** делает тело foldLeft читаемым (не сам foldLeft)
