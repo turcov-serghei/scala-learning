@@ -47,6 +47,10 @@ Full course structure (Modules 0-6). Read directly for lesson topics and order.
 
 Current status of each lesson/exercise. **Start with the "Current Position" section** at the top — it contains the exact checkpoint (last theory part delivered, next step, key decisions) so you can resume from where the previous session stopped.
 
+### `.junie/CHECKPOINT.md` — Session Checkpoint
+
+**Created for new-session context restoration.** Contains a concise summary of the current state: active exercise, last completed position, next step, git branch, last commit, and the ordered list of files to read to restore context. **Read this file first when starting a new session** to quickly reload the agent context without replaying the full chat history.
+
 ### `.junie/templates/` — Exercise Code Templates
 
 Contains reusable code skeleton templates for exercise levels (Level 1/2/3). Referenced by "Code Template — 3 Levels on Request" rule in `LEARNING_STYLE.md` when the user requests a code template.
