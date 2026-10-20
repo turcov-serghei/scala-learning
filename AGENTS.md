@@ -70,7 +70,11 @@ Protocol files record the learning journey for each lesson:
 
 **These protocols are the basis for calibrating future lessons.** Before starting a new lesson, read the previous lesson's protocol.
 
-### `scala-course/plans/` — Session Plans
+### `.kilo/git-rules.md` — Git Workflow Rules (MUST READ)
+
+Git workflow rules for the AI agent. **Read this file before any git operation.**
+
+---
 
 Historical artifacts from Junie's internal task tracking. Not needed for continuing the course.
 
