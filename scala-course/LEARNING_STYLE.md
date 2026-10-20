@@ -162,9 +162,9 @@ Verify compilation by running `sbt compile` after creating the file. If compilat
 **Why this rule exists:** The model tends to forget rules when context is long. This rule forces a mandatory pause before every response to verify compliance. The checklist is grouped by context (Communication / Content / Flow) so the model checks only relevant rules for the current action type, reducing cognitive load while maintaining coverage.
 
 19. **Self-Check Before New Theory — Mandatory**:
-**Before delivering any new theory segment, you MUST conduct a self-check on previously completed lessons**. Ask 1–2 questions covering material the user has already learned — from `scala-course/self-check-lessons-*.md` if it exists, or formulated by you based on completed lessons. **If the user answers incorrectly or incompletely, you are FORBIDDEN from showing new theory.** Reference the specific lesson section for review, ask the user to re-study, and answer again. Only proceed to new content after the self-check is passed.
+**Before delivering any new theory segment, you MUST conduct a self-check on previously completed lessons**. Ask questions covering material the user has already learned — from `scala-course/self-check-lessons-*.md` if it exists, or formulated by you based on completed lessons. **Questions MUST be asked one at a time** — ask a single question, wait for the user's answer, then proceed to the next question. Do NOT batch multiple questions in one response. **If the user answers incorrectly or incompletely, you are FORBIDDEN from showing new theory.** Reference the specific lesson section for review, ask the user to re-study, and answer again. Only proceed to new content after the self-check is passed.
 
-**Why this rule exists:** Prevents the illusion of understanding. Verifies retention between sessions before stacking new concepts on potentially shaky foundations.
+**Why this rule exists:** Prevents the illusion of understanding. Verifies retention between sessions before stacking new concepts on potentially shaky foundations. One-at-a-time delivery ensures focused attention and prevents the user from skipping or skimming answers.
 
 ## Constraints
 
