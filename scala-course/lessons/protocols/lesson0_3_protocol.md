@@ -140,4 +140,18 @@
 
 ---
 
-*Protocol created during theory phase. Will be updated after exercises are completed.*
+## Self-Check Discussion (2026-10-21)
+
+**Q1:** For-comprehension — это цикл или `flatMap` + `map`? → Пользователь ответил: сахар для flatMap + map. Верно.
+**Result:** Пройден.
+
+**Q2:** Что делает `yield`? → Пользователь ответил: в случае for comprehension это и есть map. Верно.
+**Result:** Пройден.
+
+**Q3:** Чем отличается `<-` на `Option` от `<-` на `List`? → Пользователь ответил: Option разврачивает элемент из контейнера, при None выходит из for. List — конкатенация/суммирование. Уточнено: `<-` на List — это `flatMap` (итерация по элементам, склейка результатов), не суммирование и не цикл. Без `yield` — `foreach`. `y = ...` — val binding (let). `y <- Option(...)` — ещё один generator.
+**Result:** Пройден с уточнением.
+
+**Q4:** Что вернёт `for { a <- None } yield a + 1`? → Пользователь ответил: None. Верно.
+**Result:** Пройден.
+
+*Protocol updated on 2026-10-21.*

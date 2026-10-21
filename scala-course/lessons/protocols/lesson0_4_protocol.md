@@ -162,8 +162,20 @@
 - **All 7 micro-exercises completed and passed** on first run (2026-10-13)
 - **foldLeft "кошмар" resolved:** User now implements `Option[List[A]]` aggregation confidently
 - **For-comprehension in foldLeft body:** User correctly applied for-comprehension to replace flatMap + map in foldLeft body
-- **Monad laws verified:** Left Identity and Right Identity implemented and tested
-- **Lesson 0.4 status:** Theory + micro-exercises completed ✅
+---
 
+## Self-Check Discussion (2026-10-21)
 
+**Q1:** Что такое monad (две операции)? → Пользователь ответил: pure и flatMap — создание контейнера и его преобразование. Верно.
+**Result:** Пройден.
 
+**Q2:** Три закона monad → Пользователь не помнил. Уточнено: Left Identity, Right Identity, Associativity. Объяснено зачем нужны (безопасный рефакторинг).
+**Result:** Пройден с уточнением.
+
+**Q3:** Почему foldLeft — не "кошмар", а цикл с аккумулятором? → Пользователь ответил: сложно записываемая структура, for-comprehension удобнее. Уточнено: foldLeft = цикл с аккумулятором.
+**Result:** Пройден с уточнением.
+
+**Q4:** Что произойдёт с аккумулятором Option[List[A]], как только он станет None? → Пользователь ответил: foldLeft остановится и вернёт None. Верно (None.flatMap = None, результат остаётся None).
+**Result:** Пройден.
+
+*Protocol updated on 2026-10-21.*

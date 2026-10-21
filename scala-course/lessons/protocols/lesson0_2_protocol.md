@@ -267,4 +267,34 @@ def aggregateResults[F[_], A](results: List[F[A]])(implicit f: FlatMap[F]): F[Li
 
 ---
 
-*Protocol created from two sessions: session-261007-180454-15b5 (previous) and session-261007-180548-c77y (current). Theory was delivered in the previous session; exercise and F[_] refactoring were completed in the current session.*
+---
+
+## Self-Check Discussion (2026-10-21)
+
+**Q1:** Что такое `F[_]`? → Пользователь ответил: «функтор — F это имплементация, _ это generic». Уточнено: `F[_]` — higher-kinded type (контейнер), функтор — отдельная type class. Пользователь уточнил: F — обложка типа, набор: Option, List, Future. Map не подходит (два параметра). Partial application: `type ErrorOr[A] = Either[String, A]`.
+**Result:** Пройден с уточнением.
+
+**Q2:** Приведи примеры F = Option/List/Future → Пользователь ответил: `Option[Int]`, `List[Int]`, `Future[Int]`. Уточнено: Future[Int] = асинхронный контейнер, результат будет через время.
+**Result:** Пройден.
+
+**Q3:** Почему в Java нельзя написать одну функцию для Optional/Mono/CompletableFuture? → Пользователь ответил: разные типы с разными родителями, Java позволяет вернуть T но не параметризировать контейнер. Можно только Object. Верно.
+**Result:** Пройден.
+
+**Q4:** Что делает foldLeft с List[Option[A]]? → Пользователь ответил: обрабатывает с начала, прерывает если Option стал None, получает лист с новым состоянием на каждый прогон.
+**Result:** Пройден.
+
+---
+
+### Self-Check Discussion: F[_] и higher-kinded types (2026-10-21)
+
+**Затык:** Пользователь назвал `F[_]` функтором. Уточнено: `F[_]` — higher-kinded type (контейнер), функтор — отдельная type class.
+
+**Обсуждение:**
+- `Map` не подходит как `F[_]` — принимает два типа (`F[_, _]`). Пользователь сам засомневался — верно.
+- `Either[E, A]` — `F[_, _]`, но при фиксации `E` (partial type application) становится `F[_]`: `type ErrorOr[A] = Either[String, A]`.
+- `process[F[_]](value: F[Int]): F[String]` — контейнер тот же, меняется содержимое через `map`.
+- `F[A] -> G[B]` — нужна натуральная трансформация (`FunctionK`). Без неё не реализовать.
+
+**Инсайт:** Пользователь быстро уловил связь partial application → F[_]. Затык был в путанице «функтор vs higher-kinded type».
+
+*Protocol updated on 2026-10-21.*

@@ -2,14 +2,14 @@
 
 ## Current Position
 
-**Active exercise:** Exercise 0 — Optional → Option refactoring (Main Exercise)
-**Last position:** Exercise 0.4 completed (Level 1) — all assertions passed, foldLeft diagram added, Monad laws verified.
-**Next step:** User implements Exercise 0 (Optional → Option) skeleton and test cases.
+**Active exercise:** Ad-hoc — Lesson 0.1 trait vs interface (completed)
+**Last position:** Ad-hoc theory delivered (State, Multiple inheritance). Exercise `lesson0_1_adhoc.scala` completed and passed. Constructor params removed (Scala 3 only).
+**Next step:** Exercise 0 completed. Proceed to Module 1 or new material.
 **Notes:**
-- Exercise 0.4 marked ✅ Completed; ready to start Exercise 0.
-- Resuming from Lesson 0.4 completion
-- foldLeft visual diagram and Monad laws verified in Exercise 0.4
-- Cats library (cats-core 2.13.0) remains in build.sbt
+- Ad-hoc: trait state (Named, Auditable) — упражнение пройдено, компиляция OK
+- Ad-hoc: constructor params в trait — удалён (Scala 3 фича)
+- Ad-hoc: multiple inheritance — доставлен + упражнение пройдено
+- Self-check: 0.1 Q1-Q5 done; 0.2 Q1-Q4 done
 
 ---
 
@@ -30,7 +30,18 @@
 | ✅ | Lesson 0.2: Higher-Kinded Types | 2026-10-07 | 2026-10-07 | Усвоено: F[_], foldLeft, flatMap/map на Option, функциональный стиль vs Java-style |
 | ✅ | Lesson 0.3: For-Comprehensions Decoded | 2026-10-07 | 2026-10-09 | Усвоено: for-comprehension desugaring, guards, `<-` vs `=`, `<-` на List (итерация). Затык: foldLeft агрегация — требует закрепления в уроке 0.4 |
 | ✅ | Lesson 0.4: Monads Explained | 2026-10-12 | 2026-10-15 | Теория и упражнения завершены. Main Exercise 0.4 (Level 1) успешно пройден. |
-| 🔄 | Exercise 0: Optional → Option refactoring | 2026-10-15 | — | Started main exercise implementation. |
+| ✅ | Exercise 0: Optional → Option refactoring | 2026-10-21 | — | for-comprehension with Option, find, yield. Compiles, tests pass. |
+
+---
+
+## Self-Check Progress
+
+| Status | Lesson | Position | Notes |
+|--------|--------|----------|-------|
+| ✅ | Lesson 0.1: Type Classes | Q1-Q5 passed | Ad-hoc: trait state + multiple inheritance |
+| ✅ | Lesson 0.2: Higher-Kinded Types | Q1-Q4 passed | |
+| ✅ | Lesson 0.3: For-Comprehensions | Q1-Q4 passed | |
+| ✅ | Lesson 0.4: Monads | Q1-Q4 passed | |
 
 ---
 

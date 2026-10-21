@@ -163,4 +163,47 @@ print(myTransaction, transactionShow)
 
 ---
 
-*Protocol updated on 2026-10-08. Two exercises were completed: `lesson0_1.scala` (Sort[T]) and `lesson0_1_extra_exercise.scala` (Format[T]). Both exercises demonstrate solid understanding of type classes, implicit parameters, and SAM trait lambda syntax.*
+---
+
+## Ad-hoc: `trait` vs Java `interface` (2026-10-21)
+
+### Theory Delivered
+- State (поля в trait): `val`/`var` в trait, абстрактные поля, auto-implementation через case class params
+- Implicit resolution (type class pattern)
+- Множественное наследование через `extends` + `with`
+
+### Self-Check Question 2
+**Q:** Зачем нужен `implicit val` в Scala?
+**A:** Пользователь ответил: не передавать дополнительный аргумент при вызове, т.к. автоматически инжектится (единственная имплементация).
+**Result:** Пройден.
+
+### Self-Check Question 3
+**Q:** Что произойдёт, если в scope окажется два `implicit` одного и того же типа?
+**A:** Пользователь ответил: ошибка компиляции `ambiguous`.
+**Result:** Пройден.
+
+### Self-Check Question 4
+**Q:** Как выглядит вызов `print(myTransaction)` без явного указания `Show`?
+**A:** Пользователь ответил: не нужно передавать, но можно. Оба варианта работают.
+**Result:** Пройден.
+
+### Self-Check Question 5
+**Q:** Что такое type class (через Comparable/Comparator)?
+**A:** Пользователь ответил: Comparator — частный случай для сравнения. Type class — общий паттерн для любого поведения с кастомными именами. Уточнено: автоматическая инъекция — это `implicit`, а не сам type class.
+**Result:** Пройден с уточнением.
+
+### Exercise: lesson0_1_adhoc.scala
+**File:** `src/main/scala/lesson0_1_adhoc.scala`
+**Status:** ✅ Passed (compiles, runs, all 3 test cases pass)
+**Content:**
+- `trait Named` с полем `name: String` + метод `greet()`
+- `case class User(name: String) extends Named` — auto-implementation
+- `case class GreetedUser(name: String) extends Named` — override `greet()`
+- `trait Auditable` с полем `createdAt: Long` + метод `auditInfo()`
+- `case class Transaction(id, amount, createdAt) extends Auditable`
+- `trait Loggable` + `trait Timestamped` + `case class Audit() extends Loggable with Timestamped`
+
+### Theory Saved
+Ad-hoc section added to `scala-course/lessons/lesson0_1_theory.md`.
+
+*Protocol updated on 2026-10-21.*

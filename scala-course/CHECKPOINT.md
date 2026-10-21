@@ -2,13 +2,14 @@
 
 > **Purpose:** Restore AI agent context after a new session. Read this file first when resuming.
 
-## Current Position (as of 2026-10-16)
+## Current Position (as of 2026-10-21)
 
-- **Active exercise:** Exercise 0 — Optional → Option refactoring (Main Exercise)
-- **Last position:** Exercise 0.4 completed (Level 1) — all assertions passed, foldLeft diagram added, Monad laws verified.
-- **Next step:** User implements Exercise 0 (Optional → Option) skeleton and test cases.
-- **Git branch:** `lesson0_4`
-- **Last commit:** `63dae89` — "Remove junie's workarounds" (`scala-course/LEARNING_STYLE.md`)
+- **Active exercise:** None (Exercise 0 completed)
+- **Last position:** Exercise 0 completed — Optional → Option refactoring with for-comprehension. Compiles, tests pass.
+- **Next step:** Module 1 (Scala Syntax Through Refactoring) or new material.
+- **Self-check position:** 0.1 ✅ (Q1-Q5), 0.2 ✅ (Q1-Q4), 0.3 ✅ (Q1-Q4), 0.4 ✅ (Q1-Q4)
+- **Git branch:** `master`
+- **Last commit:** `e1c2965` — "Add Interaction Principles to AGENTS.md"
 
 ## Completed Lessons (Module 0)
 
@@ -30,7 +31,7 @@
 1. `scala-course/BACKGROUND.md` — user profile (who you are teaching)
 2. `scala-course/LEARNING_STYLE.md` — strict rules (18 rules, Sections I–V)
 3. `scala-course/PROGRESS.md` "Current Position" — exact resume checkpoint
-4. `scala-course/lessons/protocols/lesson0_4_protocol.md` — weak spots and calibration notes for Lesson 0.4
+4. `scala-course/lessons/protocols/lesson0_2_protocol.md` — weak spots and calibration notes for Lesson 0.2 (includes self-check discussion)
 5. `scala-course/CHECKPOINT.md` — this file (session state summary)
 
 ## Key Rules to Remember

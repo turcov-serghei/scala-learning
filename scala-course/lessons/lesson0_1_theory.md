@@ -169,3 +169,71 @@ java.lang.Integer.compare(value1.age, value2.age)  // ✅
 - Используете `val` вместо `var`
 - Implicit resolution — компилятор находит `shortFormat` автоматически
 - String interpolation `s"${...}"`
+
+---
+
+## Ad-hoc: `trait` vs Java `interface` — поведенческие отличия
+
+### State (поля в trait)
+
+В Java `interface` не может хранить состояние объекта — только `static final` константы. В Scala `trait` может содержать `val`/`var`, и каждый класс, наследующий этот trait, получает это поле.
+
+```scala
+trait Named {
+  val name: String        // абстрактное поле — каждый объект получает своё
+  def greet(): String = s"Hello, $name"
+}
+
+case class User(name: String) extends Named
+// User автоматически получает поле name и метод greet()
+
+val u = User("Bob")
+println(u.greet())  // Hello, Bob
+```
+
+**Что здесь происходит:**
+- `trait Named` объявляет `val name: String` — абстрактное поле (без значения).
+- `case class User(name: String)` — при `extends Named` компилятор видит: `User` уже имеет параметр `name: String`, значит поле trait реализовано. Ничего переопределять не нужно.
+- Если бы case class не имел параметра `name`, компилятор потребовал бы его реализовать.
+
+**Java-аналог:** Нет прямого аналога. В Java для этого нужен абстрактный класс с полем и геттером.
+
+### Implicit resolution (type class pattern)
+
+`trait` + `implicit` — компилятор находит реализацию автоматически (см. разделы 2-4 выше). Java `interface` не имеет compile-time DI.
+
+### Множественное наследование
+
+Один класс может наследовать от **нескольких** trait через `extends` + `with`:
+
+```scala
+trait A { def foo(): String = "A" }
+trait B { def bar(): String = "B" }
+
+class C extends A with B  // смешивает оба trait
+```
+
+При конфликте методов (одинаковые сигнатуры в A и B):
+
+```scala
+trait A { def greet(): String = "Hello from A" }
+trait B { def greet(): String = "Hello from B" }
+
+class C extends A with B
+// ОШИБКА: "class C inherits conflicting members"
+```
+
+Компилятор **НЕ выберет** автоматически — потребует явного `override`:
+
+```scala
+class C extends A with B {
+  override def greet(): String = super[A].greet()  // явно берём из A
+}
+```
+
+- Java: ошибка компиляции, нужно переопределить вручную
+- Scala: `super[A].method` / `super[B].method` — явный выбор
+
+### Упражнение (lesson0_1_adhoc.scala)
+
+Практическое упражнение: `trait Named` с полем state, `trait Auditable` с полем state, case classes с override и mixin. Файл: `src/main/scala/lesson0_1_adhoc.scala`. Результат: компиляция и запуск успешны, все кейсы пройдены.

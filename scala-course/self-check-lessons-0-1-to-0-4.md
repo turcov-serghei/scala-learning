@@ -7,15 +7,15 @@
 1. Чем отличается `trait` от Java `interface` по части поведения?
 2. Зачем нужен `implicit val` в Scala?
 3. Что произойдёт, если в scope окажется два `implicit` одного и того же типа?
-4. Как выглядит вызов `print(myTransaction)` в Scala без явного указания `Show`?
-5. Что такое type class простыми словами (через Java Comparable/Comparator)?
+4. В Lesson 0.1 мы создали type class `Show[T]` (trait с методом `show`) и функцию `print[T](value: T)(implicit show: Show[T])`. Если в scope уже есть `implicit val transactionShow: Show[Transaction]`, как выглядит вызов `print(myTransaction)`? Нужно ли передавать `Show` явно?
+5. В Java есть Comparable<T> (поведение зашито в класс) и Comparator<T> (поведение передаётся отдельно). В Lesson 0.1 мы изучили type class — это интерфейс + экземпляры поведения, которые компилятор подключает автоматически. Чем type class отличается от Comparator? Что делает его первым классом в Scala по сравнению с Java?
 
 **Ссылка:** `scala-course/lessons/lesson0_1_theory.md`
 
 ### Lesson 0.2 — Higher-Kinded Types
 
 1. Что такое `F[_]` простыми словами?
-2. Приведи примеры: `F = Option`, `F = List`, `F = Future`.
+2. В Lesson 0.2 мы изучили `F[_]` — контейнер, принимающий один тип. Если `F = Option`, то `F[Int]` = `Option[Int]`. Если `F = List`, то `F[Int]` = `List[Int]`. Что будет, если `F = Future` и `F[Int]`? Приведи конкретный пример типа.
 3. Почему в Java нельзя написать одну функцию, работающую с `Optional`, `Mono` и `CompletableFuture` одновременно?
 4. Что делает `foldLeft` с `List[Option[A]]`?
 
