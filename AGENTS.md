@@ -15,6 +15,7 @@ This project is a **Scala learning course** for a Java Senior Developer transiti
 - **Show before commit:** Present diff and wait for approval before any git commit.
 - **One concept at a time:** Deliver one concept per response (max 1 screen). Never dump multiple topics at once.
 - **No auto-merge:** Never merge PRs or push to master without explicit instruction.
+- **Batch progress updates:** Update PROGRESS.md "Current Position" in a single edit (replace entire block: Last position + Next step + Notes). One approval, not multiple.
 
 ---
 
