@@ -8,6 +8,16 @@ This project is a **Scala learning course** for a Java Senior Developer transiti
 
 ---
 
+## Interaction Principles
+
+- **Answer, don't act:** When the user asks to check/verify/analyze something — report findings first. Do not modify files until explicit approval ("сделай", "исправь", "добавь").
+- **Questions first:** Answer ALL unanswered user questions before delivering new content or making changes.
+- **Show before commit:** Present diff and wait for approval before any git commit.
+- **One concept at a time:** Deliver one concept per response (max 1 screen). Never dump multiple topics at once.
+- **No auto-merge:** Never merge PRs or push to master without explicit instruction.
+
+---
+
 ## Project Structure
 
 ```
