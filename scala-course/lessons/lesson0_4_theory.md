@@ -259,3 +259,13 @@ foldLeft — это цикл с аккумулятором. Java's `Stream.reduc
 - **Scala унифицирует** этот паттерн через `F[_]` и type classes
 - **foldLeft** — это цикл с аккумулятором, не "кошмар"
 - **For-comprehension** делает тело foldLeft читаемым (не сам foldLeft)
+
+
+---
+
+## Review points
+
+- Агрегация списка выполняется за один проход через `foldLeft` (а не через `contains` + `flatMap`, то есть два прохода).
+- Тело `foldLeft` выражено через `flatMap` + `map` или for-comprehension; сам `foldLeft` остаётся.
+- Нет `var` и мутабельных коллекций для накопления результата.
+- Ошибки представлены значением (`Either`/`Option`), а не исключением или `null`.

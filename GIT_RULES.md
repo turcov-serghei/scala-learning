@@ -1,6 +1,8 @@
-# Git Workflow Rules (Kilo-specific)
+# Git Workflow Rules
 
-## Rules for the AI agent (Kilo)
+## Rules for every AI agent in this project (Claude Code, Kilo, any other)
+
+These rules apply to all agents equally. Read this file before any git operation.
 
 1. **No commits without explicit instruction** — never run `git commit` unless the user explicitly asks to commit.
 2. **No push without explicit instruction** — never run `git push` unless the user explicitly asks to push.

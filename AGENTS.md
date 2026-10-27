@@ -10,12 +10,10 @@ This project is a **Scala learning course** for a Java Senior Developer transiti
 
 ## Interaction Principles
 
-- **Answer, don't act:** When the user asks to check/verify/analyze something — report findings first. Do not modify files until explicit approval ("сделай", "исправь", "добавь").
-- **Questions first:** Answer ALL unanswered user questions before delivering new content or making changes.
-- **Show before commit:** Present diff and wait for approval before any git commit.
-- **One concept at a time:** Deliver one concept per response (max 1 screen). Never dump multiple topics at once.
-- **No auto-merge:** Never merge PRs or push to master without explicit instruction.
-- **Batch progress updates:** Update PROGRESS.md "Current Position" in a single edit (replace entire block: Last position + Next step + Notes). One approval, not multiple.
+- **Answer, don't act:** When the user asks to check/verify/analyze something — report findings first. Do not modify files until explicit approval ("сделай", "исправь", "добавь"). Exception: theory, protocol, and progress files are auto-updated — see Rule 2 (File Change Permissions) in `scala-course/LEARNING_STYLE.md`.
+- **Git:** all git operations follow `GIT_RULES.md` (commit/push/merge only on explicit instruction, diff shown before commit).
+
+Teaching rules (questions first, pacing, progress updates) are defined only in `scala-course/LEARNING_STYLE.md`.
 
 ---
 
@@ -60,11 +58,11 @@ Current status of each lesson/exercise. **Start with the "Current Position" sect
 
 ### `scala-course/CHECKPOINT.md` — Session Checkpoint
 
-**Created for new-session context restoration.** Contains a concise summary of the current state: active exercise, last completed position, next step, git branch, last commit, and the ordered list of files to read to restore context. **Read this file first when starting a new session** to quickly reload the agent context without replaying the full chat history.
+**Recovery aid only.** Contains the ordered list of files to read, the repository state (branch, last commit, uncommitted work), and a note about an interrupted step. It does NOT hold learning progress — that lives only in `PROGRESS.md`. **Read this file first when starting a new or recovered session.**
 
 ### `scala-course/templates/` — Exercise Code Templates
 
-Contains reusable code skeleton templates for exercise levels (Level 1/2/3). Referenced by "Code Template — 3 Levels on Request" rule in `LEARNING_STYLE.md` when the user requests a code template.
+Reference material used by the rules in `LEARNING_STYLE.md`: `exercise_skeletons.md` (Level 1/2/3 skeletons), `exercise_pitfalls.md` (compile checks), `fp_review_checklist.md` (functional style review).
 
 ### `scala-course/lessons/` — Lesson Theory Files
 
@@ -81,9 +79,9 @@ Protocol files record the learning journey for each lesson:
 
 **These protocols are the basis for calibrating future lessons.** Before starting a new lesson, read the previous lesson's protocol.
 
-### `.kilo/git-rules.md` — Git Workflow Rules (MUST READ)
+### `GIT_RULES.md` — Git Workflow Rules (MUST READ)
 
-Git workflow rules for the AI agent. **Read this file before any git operation.**
+Project-level git rules for every AI agent (Claude Code, Kilo, others). **Read this file before any git operation.**
 
 ---
 
@@ -97,6 +95,7 @@ Historical artifacts from Junie's internal task tracking. Not needed for continu
 
 When starting a new session, follow these steps:
 
+0. **Read `scala-course/CHECKPOINT.md`** — Concise session summary and file reading order.
 1. **Read `scala-course/BACKGROUND.md`** — Understand who you are teaching (Java Senior, experience, skill levels).
 2. **Read `scala-course/LEARNING_STYLE.md`** — Understand the strict rules before doing anything.
 3. **Read `scala-course/PROGRESS.md` "Current Position" section** — This is your resume checkpoint. It tells you the exact last position (theory part delivered, next step, key decisions) so you can continue from where the previous session stopped.

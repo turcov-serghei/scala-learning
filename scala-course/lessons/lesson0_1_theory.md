@@ -237,3 +237,14 @@ class C extends A with B {
 ### Упражнение (lesson0_1_adhoc.scala)
 
 Практическое упражнение: `trait Named` с полем state, `trait Auditable` с полем state, case classes с override и mixin. Файл: `src/main/scala/lesson0_1_adhoc.scala`. Результат: компиляция и запуск успешны, все кейсы пройдены.
+
+
+---
+
+## Review points
+
+- Type class объявлен как `trait` с параметром типа (`Format[T]`), а не как набор отдельных методов под каждый тип.
+- Экземпляры type class — `implicit val` (или `implicit object`), а не `var` и не создаются заново при каждом вызове.
+- Экземпляр подставляется компилятором (implicit resolution); на месте вызова он не передаётся вручную.
+- Case class создаётся без `new`, коллекции — через `List(...)`.
+- Нет `var`; строки собираются через интерполяцию `s"..."`, а не конкатенацией.

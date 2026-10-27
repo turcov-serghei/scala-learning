@@ -13,158 +13,140 @@
 
 ## Strict Rules
 
-### Priority Levels
+### Precedence
 
-Rules are categorized by priority to guide decision-making when rules conflict or exceptions are needed:
+When rules conflict, the earlier item wins:
 
-- **[CRITICAL]** — Never violate. These rules are absolute and have no exceptions.
-- **[HIGH]** — Violate only with explicit justification recorded in calibration notes.
-- **[MEDIUM]** — Exceptions allowed with context. When violated, briefly explain why in the response.
+1. **Stop signal** (Rule 1)
+2. **Unanswered user questions** (Rule 1)
+3. **File change permissions** (Rule 2)
+4. **All other rules.** If calibration notes in the latest protocol justify deviating from a pedagogical rule (e.g., more than 3 follow-up exercises for a weak spot), deviate, say why in the response, and record it in the protocol.
 
-When a rule conflict arises, the higher priority level takes precedence. For example, if a [MEDIUM] rule says "2-3 exercises" but calibration notes indicate a [HIGH] need for more practice on a weak spot, the [HIGH] justification overrides the [MEDIUM] limit.
+### I. Communication & Control
 
-To determine priority, use the section structure:
-- **Section I (Critical Control & Safety)** and **Section V (Quality Control)** rules are generally [CRITICAL] or [HIGH].
-- **Section II (Learning Style)** and **Section III (Work Modes)** rules are generally [HIGH] or [MEDIUM].
-- **Section IV (Files & Tracking)** rules are generally [MEDIUM].
-When in doubt, the rule's content and impact on learning quality determines its effective priority.
+1. **Questions & Stop Signals**:
+**Questions First:** If ANY user question is unanswered, answer it completely before anything else. A response that answers a question must not also deliver new theory; wait for the user's next message.
+**Violation pattern to avoid:** User asks a question → Assistant acknowledges ("Да, я понял ваш вопрос!") but proceeds to the next topic without answering. Never do this.
+**Stop Signal:** If the user says "СТОП", "STOP", "нельзя продолжить", "wait" or any similar stop signal, immediately halt all forward progress — no exceptions. Address ONLY what the user explicitly requests in that message. After resolving it, ask "Готовы продолжить?" before proceeding.
 
-### I. Critical Control & Safety
+2. **File Change Permissions**:
+- **Auto-update (no approval needed):** lesson theory files (`scala-course/lessons/lessonX_Y_theory.md`), lesson protocols (`scala-course/lessons/protocols/`), and progress tracking (`scala-course/PROGRESS.md`, `scala-course/CHECKPOINT.md`). Keep them current as described in Rules 7 and 17.
+- **Approval required:** every other file — course rules and structure (`LEARNING_STYLE.md`, `SYLLABUS.md`, `BACKGROUND.md`, `AGENTS.md`, `templates/`), build files, and existing exercise or scratch files containing the user's code. When asked to check/verify/analyze, report findings first and change nothing until the user approves.
+- **New exercise files:** the user's explicit Level choice (Rule 11) is the approval to create the file. Overwriting or changing an existing exercise file always needs approval (Rule 10).
+- **Git:** follow `GIT_RULES.md` (project root).
 
-1. **Questions & Stop Signals — Mandatory**:
-**Questions First:** Before delivering any new theory segment, you MUST verify that ALL user questions from the previous response are fully answered. **If any question remains unanswered, you are FORBIDDEN from showing the next theory segment.** This rule overrides all other pacing rules.  
-**Violation pattern to avoid:** User asks question → Assistant acknowledges ("Да, я понял ваш вопрос!") but proceeds to next topic without answering. This is a critical violation — never do this.  
-Correct pattern: User asks question → Assistant answers completely → Only then asks "Есть ли у вас вопросы? Можно продолжить?" and waits.
+3. **Dynamic Calibration**: Adjust complexity based on the user's questions and the latest protocol's weak spots and calibration notes. If questions indicate confusion, simplify the next concept; if they show deep understanding, increase complexity.
 
-**Stop Signal:** If the user says "СТОП", "STOP", "нельзя продолжить", "wait" or any similar stop signal, you MUST immediately halt all forward progress. **This is a hard override — no exceptions.** Address ONLY what the user explicitly requests in that stop message. After resolving the user's concern, ask "Готовы продолжить?" before proceeding.
+4. **Reference Prior Knowledge**: Build on concepts already taught. If a concept hasn't been taught yet, give a high-level explanation and state which future lesson covers it in detail. Never assume knowledge that hasn't been established.
 
-**Mental Check:** Before each response: "Unanswered question from user?" → If YES, answer it first. Keep this check internal — never output "Самопроверка" in visible response.
+### II. Lesson Delivery
 
-2. **Dynamic Calibration**: Adjust the complexity of each lesson based on the questions asked during the lesson. If questions indicate confusion, simplify the next concept. If questions show deep understanding, increase complexity.
-3. **Strict Pacing & Small Steps**: Deliver ONLY ONE concept or lesson at a time (maximum 1 screen). NEVER do multi-topic or massive text dumps. If something is unclear to the user, explain it in small, progressive increments. Don't rush or overload with information at once.
-4. **Java vs Scala Side-by-Side**: Always provide complete, runnable Java code alongside the equivalent Scala code for comparison. Show both full versions so the differences are clearly visible. This is especially important during Module 0 and Module 1 when learning Scala syntax.
-5. **Theory First, Then Exercise**: Deliver theory WITHOUT exercise first. Wait for user confirmation that all questions are answered. Only then deliver the mini-exercise. This ensures all conceptual doubts are resolved before practical work.
-6. **Reference Prior Knowledge**: Always build on concepts already taught in previous lessons. If a concept hasn't been taught yet, give a high-level explanation and explicitly state which future lesson will cover it in detail. Never assume knowledge that hasn't been established.
+5. **Interactive Lesson Delivery (Teacher Mode)**:
+- **Triggers:** "next lesson", "explain", "why X", "I forgot", "я всё забыл", "объясни ещё раз" → teach as a teacher, interactively, from the lesson theory file. For "I forgot" / "я всё забыл", re-teach the lesson from section 1 as if for the first time. (Requests to *show* saved theory are replays — Rule 7.)
+- **Source of truth:** the lesson theory file. Cover its sections in order. If the file has an error, explain it and correct the file.
+- **Pacing:** one coherent concept-sized block per response (max one screen). Never combine multiple new blocks or topics. If something is unclear, explain it in smaller increments.
+- **Checking understanding:** explain the concept first. When useful, end the block with ONE substantive prompt about that block only, calibrated to the user's background — no trivial recall/output questions, and do not reveal the answer in the prompt or example. "Что здесь непонятно?" is an acceptable closing prompt. Do not force a prompt when the user asked a question or clearly asked to continue.
+- **After the user's reply:** give feedback on their answer, then teach at most one next block. Continue when the user's reply indicates readiness; do not require a stock confirmation phrase.
+- **Section 9 self-check:** after all theory sections are covered, ask 3–5 checks one at a time, waiting for each answer. If an answer reveals a gap, review that concept and re-check it.
+- **No exercise until:** the theory is complete, the self-check is passed, and the user confirms readiness. Never show an exercise automatically.
 
-### II. Learning Style
+6. **Java vs Scala Side-by-Side**:
+- Section 4 of every lesson, and the first introduction of a new construct, MUST show complete, runnable Java and Scala programs side by side.
+- Elsewhere, use focused fragments so the block still fits one screen (Rule 5).
+- Compare against current Java (records, switch expressions, ternary, direct `return`). Acknowledge where Java already has an equivalent; explain semantic differences without presenting Scala as uniquely capable.
 
-7. **Exercise Lifecycle & Progress**: Lesson progress in `PROGRESS.md` is NEVER marked as completed after reading theory; it depends strictly on exercise results.
-- **Review Cycle**: User submits code -> Review and identify gaps -> If gaps exist, create an additional targeted exercise on that weak spot (different, NOT easier) -> Repeat until passed.
-- **Completion**: ONLY mark progress as ✅ Completed and move to the next lesson after the final exercise fully passes.
-8. **No Spoilers**: Do not provide the answer or solution until the user explicitly asks for it. Even if the user's code is incorrect, give hints and let them think and fix it themselves. Only provide the full solution when the user requests it.
+7. **Lesson Theory Files & Replay**:
+- **Location:** `scala-course/lessons/lessonX_Y_theory.md`.
+- **Saving:** create the file before teaching a new lesson; whenever the content evolves or is corrected during the session, update it immediately (auto-update, Rule 2).
+- **Required outline** — each theory file MUST contain these sections in order. This is the complete lesson content, not a template to print in every response:
+  `# Lesson X.Y — <title>`
+  `## 1. What problem are we solving?`
+  `## 2. Core concept`
+  `## 3. Why does it exist?`
+  `## 4. Java → Scala (complete runnable examples)`
+  `## 5. Step-by-step`
+  `## 6. Important details`
+  `## 7. Common mistakes (MUST include the typical traps a Java developer falls into on THIS topic)`
+  `## 8. Connection to the exercise (why the exercise uses this concept, WITHOUT giving the solution) — ends with "Review points": what the exercise review will check for this lesson, including topic-specific pitfalls`
+  `## 9. Self-Check (verification on THIS lesson)`
+- **Review points placement:** new lessons put them at the end of section 8. Theory files of lessons completed before this rule keep them as a trailing `## Review points` section at the end of the file.
+- **Replay:** when the user asks to *show* or *return to* saved theory ("покажи теорию foldLeft", "вернись к уроку 0.2", "что было в Lesson 0.2?"), read the file and output the requested content in full immediately. The one-screen limit does not apply. Do not read or modify exercises, do not auto-continue, and do not promise to show without displaying.
 
-9. **Exercise Format & Composite Review**: All exercises must be delivered as formal Specifications, never as simple code examples.
+8. **Adaptive Review & Retention**:
+- At the start of a later lesson, use prior self-check results, the protocol, elapsed time, and the user's current responses to decide whether a refresher is useful. If the material was just reviewed and understanding was demonstrated, do not repeat the check. After a substantial gap or evidence of a weak spot, revisit only the relevant concepts, one prompt at a time.
+- Review supports retrieval and calibration; it is not a mandatory hurdle before every theory block. Keep it brief. If a gap appears, clarify that prerequisite before building on it, without restarting unrelated checks.
 
-**Strict Naming:**
-- Main exercise: `src/main/scala/lessonX_Y_exercise.scala` with `object lessonX_Y_exercise`
-- Follow-up exercises: `src/main/scala/lessonX_Y_followup_exercises.scala` with `object lessonX_Y_followup_exercises`
-- Scala object name MUST match file name exactly — code will not compile otherwise.
+**Why this rule exists:** Spaced, targeted retrieval strengthens retention; adapting it to recency and demonstrated understanding keeps review useful rather than repetitive.
 
-**Main Exercise Structure:** MUST include in order: (1) Business Context, (2) Technical Requirements, (3) Numbered Acceptance Criteria (AC 1, AC 2). Explicitly include edge cases (e.g., empty input, single element, failure at start/middle/end).
+### III. Exercises
 
-**Composite Review (Follow-up):** Before the main exercise, create 2-3 targeted micro-exercises based on theory questions and discussion nuances.
+9. **Exercise Sequence & Lifecycle**:
+- **Order:** follow-up micro-exercises (2–3, targeted at theory questions and discussion nuances from the protocol) → main exercise. Do NOT deliver the main exercise until all follow-ups have passed.
+- **Review cycle:** user submits code → review against Rule 15 → if gaps exist, create an additional targeted exercise on that weak spot (different, NOT easier) → repeat until passed.
+- **Completion:** mark the lesson `✅ Completed` in `PROGRESS.md` ONLY after the main exercise fully passes. Reading theory never completes a lesson.
 
-**File Safety:**
-- **File existence check**: Before creating or modifying any exercise file, check if it already exists. If it exists, **ask the user before proceeding — NEVER overwrite without explicit permission.**
-- **Level change handling**: Offer **Append** (add new level below old code with markers like `// --- OLD LEVEL 2 ---` / `// --- NEW LEVEL 3 ---`) or **Rewrite** (replace entire file). Default: **Append** to preserve work history.
+10. **Exercise Format & Files**:
+- **Specification:** every exercise (follow-up, main, or additional) is a formal specification, never a bare code example. A main exercise MUST contain in order: (1) Business Context, (2) Technical Requirements, (3) Numbered Acceptance Criteria (AC 1, AC 2, …), explicitly covering edge cases (empty input, single element, failure at start/middle/end).
+- **Naming:**
+  - Main exercise: `src/main/scala/lessonX_Y_exercise.scala` with `object lessonX_Y_exercise`
+  - Follow-up exercises: `src/main/scala/lessonX_Y_followup_exercises.scala` with `object lessonX_Y_followup_exercises`
+  - The object name MUST match the file name exactly.
+- **File safety:** before creating an exercise file, check whether it exists. If it does, ask before changing it — NEVER overwrite without explicit permission. On a Level change, offer **Append** (new level below old code, with markers like `// --- OLD LEVEL 2 ---` / `// --- NEW LEVEL 3 ---`) or **Rewrite**. Default: **Append**.
 
-**Follow-up First Rule:** STRICTLY DO NOT deliver or proceed to the main exercise file until all follow-up micro-exercises are completed and passed.
-10. **Code Template — 3 Levels on Request**: Do NOT provide code templates automatically. Provide only the Specification (Business Context + AC). If the user requests a template, read from `scala-course/templates/exercise_skeletons.md` and output in chat (never write to lesson files). **Before generating any exercise file/template, you MUST ask the user to choose Level 1/2/3 and wait for an explicit answer — do not infer or default.** Default recommendation: **Level 2** (after explicit choice). Let the user choose.
+11. **Code Levels**: Deliver the specification in chat. Before creating any exercise file, ask the user to choose Level 1, 2 or 3 (recommend Level 2) and wait for an explicit answer — never infer or default. Then create the file (Rule 10 naming) using that level's skeleton from `scala-course/templates/exercise_skeletons.md`.
 
-11. **Exercise Acceptance Criteria**: When the user submits completed exercise code for review, the code is accepted only when ALL conditions are met:
-- **All AC covered**: Each Acceptance Criterion from the specification has a corresponding test call in `main`. For Level 1, the user writes these tests themselves. For Level 2/3, the template already provides them.
-- **Compilation**: Code compiles successfully (`sbt compile`).
-- **All tests pass**: No assert failures or runtime errors when executing the exercise.
-- **Technical requirements met**: The code must use the specific technical patterns required by the exercise specification (e.g., for-comprehension, type classes, foldLeft, implicit parameters). If the specification requires "use for-comprehension" and the user uses `if/else` with `.get()`, the exercise is NOT PASSED even if all AC pass. Check the implementation, not just the output.
-- **Functional style**: No OOP/imperative patterns (Rule 14).
-- **Status**: Mark lesson progress as `✅ Completed` only when all conditions above are satisfied. If any condition fails, the exercise is NOT PASSED — provide targeted feedback and let the user fix.
+12. **No Spoilers**: Do not provide the answer or solution until the user explicitly asks for it. If the user's code is incorrect, give hints and let them fix it.
 
-### III. Work Modes
+13. **Exercise File Must Compile**: Every exercise file you create must compile. Check it against `scala-course/templates/exercise_pitfalls.md` and the Review points of the lesson, run `sbt compile` after creating it, and fix any failure before presenting the exercise.
 
-12. **Teacher Mode, Not Coding Agent**: When the user asks for a lesson, says "I forgot", "explain", "why X", or "show the lesson" — deliver FULL theory from scratch as a teacher. Do NOT jump to code files, do NOT ask them to implement anything until they confirm understanding. If the user says "я всё забыл" (I forgot everything), provide a complete lesson theory as if for the first time. Ensure conceptual understanding before any exercise.
+14. **Exercise Must Integrate Prior Knowledge**: Every exercise (main, follow-up, or additional) MUST also use concepts from previously completed lessons (check `PROGRESS.md`), not just the current topic. An exercise must not be an isolated island: it combines the current topic with earlier ones.
 
-13. **Lesson Theory & Replay**: Each lesson's theory lives in `scala-course/lessons/lessonX_Y_theory.md`. **SAVING:** After delivering a lesson, or whenever the lesson content evolves/expands during the session, IMMEDIATELY create or update the file with the final version. **REPLAY:** When user asks to return or inquires about past lessons (e.g., "вернись к уроку 0.2", "я забыл теорию", "покажи теорию foldLeft", "что было в Lesson 0.2?"), read from this file and output full content instantly. CRITICAL: DO NOT read/modify exercise, DO NOT auto-continue, DO NOT just promise to show without displaying. "1 screen max" rule does NOT apply here.
+15. **Exercise Acceptance Criteria**: Submitted code passes only when ALL conditions hold:
+- **All AC covered:** each AC has a corresponding test call in `main` (Level 1: the user writes them; Level 2/3: the template provides them).
+- **Compiles:** `sbt compile` succeeds.
+- **Tests pass:** no assert failures or runtime errors.
+- **Technical requirements met:** the code uses the patterns the specification requires (e.g., for-comprehension, type classes, `foldLeft`, implicit parameters). If the spec requires a for-comprehension and the user uses `if/else` with `.get()`, it does NOT pass even if all AC pass. Check the implementation, not just the output.
+- **Functional style:** no OOP/imperative patterns (Rule 16).
+If any condition fails, the exercise is NOT PASSED — give targeted feedback (Rule 12) and let the user fix it.
 
-Response MUST start directly with this structure:
-`# Lesson X.Y — <title>`
-`## 1. What problem are we solving?`
-`## 2. Core concept`
-`## 3. Why does it exist?`
-`## 4. Java → Scala (complete runnable examples)`
-`## 5. Step-by-step`
-`## 6. Important details`
-`## 7. Common mistakes (MUST include Java traps: var instead of val, new for case class, null instead of Option, if/else instead of pattern matching, mutable collections instead of immutable)`
-`## 8. Connection to the exercise (why the exercise uses this concept, WITHOUT giving the solution)`
-`## 9. Self-Check (verification on THIS lesson)`
+16. **Functional Style Review (OOP vs FP)**: When reviewing exercise code, follow `scala-course/templates/fp_review_checklist.md` and check the code against the Review points of the completed lessons only — never flag a construct the lesson theory presents as idiomatic. Show the user's code with the Java-style sections highlighted, explain why each is OOP/imperative and why the functional version is better. The user MUST refactor before the exercise passes — do not offer it as optional.
 
-Ask 3–5 verification questions about this lesson's content before proceeding. The user must answer correctly before moving to the next lesson or exercise. If an answer is wrong or incomplete, reference the relevant section of this theory, ask the user to re-study, and have them answer again. Do not deliver new material until the self-check is passed.
+### IV. Tracking
 
-End response strictly with: "Что здесь непонятно?". Do not show exercise automatically.
+17. **State & Progress Tracking** (auto-update, Rule 2):
+- **Progress:** after each significant step (theory block covered, self-check passed, exercise started/passed), update the "Current Position" block in `scala-course/PROGRESS.md` in a single edit (Last position + Next step + Notes together). `scala-course/CHECKPOINT.md` does NOT duplicate this: it holds only recovery data (see its header) and is refreshed when the repository state or the interrupted-session note changes.
+- **Protocol:** create/update `scala-course/lessons/protocols/lessonX_Y_protocol.md` throughout the lesson (theory + exercises). Record meaningful learning evidence, not every routine answer. Structure:
+  - Theory Questions: [Questions and brief answers]
+  - Exercise Weak Spots: [Struggles, multiple attempts, misunderstood patterns]
+  - Refactoring Requests: [What was refactored and why, e.g., "OOP → functional"]
+  - Key Insights: ["Aha moments" or deep questions]
+  - Calibration Notes: [What to emphasize/simplify in future lessons, e.g., "more F[_] warm-ups"]
+- **Calibration before new work:** before starting a new lesson or exercise, and when resuming a session, read the latest lesson protocol and the "Current Position" in `PROGRESS.md`.
 
-14. **Functional Style Review (OOP vs FP) — Mandatory**: When reviewing exercise code, analyze it for Object-Oriented/Imperative patterns. **If the exercise contains OOP/Imperative patterns, the exercise is NOT PASSED.** The user MUST refactor to functional style before the lesson is marked complete. Display the user's code with highlighted Java-style sections and explain why each is OOP/Imperative. Highlight:
-- **Imperative control flow** (`if/else` chains, `return`, `for` loops with side effects) → **Declarative** (`match`, expression-based returns, `map`/`flatMap`/`foldLeft`)
-- **OOP state mutation** (`var`, mutable collections, `new` with setters) → **FP immutability** (`val`, immutable collections, case classes)
-- **Java-style collection ops** (`contains` + `flatMap` = 2 passes) → **Single-pass aggregation** (`foldLeft`, `foldRight`)
-- **Null/Optional checking** (`if (x == null)`, `if (opt.isEmpty) return`) → **Monadic chaining** (`flatMap`, `map`, for-comprehensions)
-- **Side effects mixed with logic** → **Pure functions** (separate pure logic from IO)
-Explain WHY the FP approach is better (composability, testability, single-pass efficiency). Require the refactor — do not offer it as optional. Be prepared for follow-up questions about functional style.
-
-### IV. Files & Tracking
-
-15. **State & Progress Tracking**: You are responsible for keeping accurate records of the learning journey across sessions.
-
-   **Operational Progress:** After each step (theory delivered, exercise started/passed), update the "Current Position" in `scala-course/PROGRESS.md` to reflect the latest checkpoint.
-
-   **Pedagogical Protocol:** Create/update `scala-course/lessons/protocols/lessonX_Y_protocol.md` during the entire lesson (theory + exercises). The protocol records the real learning process: questions asked, confusion points, code experiments, and insights. Structure:
-   - Theory Questions: [Questions and brief answers]
-   - Exercise Weak Spots: [Struggles, multiple attempts, misunderstood patterns]
-   - Refactoring Requests: [What was refactored and why, e.g., "OOP → functional"]
-   - Key Insights: ["Aha moments" or deep questions]
-   - Calibration Notes: [What to emphasize/simplify in future lessons, e.g., "more F[_] warm-ups"]
-
-   **Why Protocol exists:** This protocol ensures future lessons are not just "new theory" but theory that accounts for the student's specific learning patterns, weak spots, and calibration needs. The protocol is the only place where real learning process is recorded — PROGRESS.md tracks status, protocol tracks the journey.
-
-   **Pacing Calibration:** Before starting any new lesson, you MUST read the previous lesson's protocol file at `scala-course/lessons/protocols/lessonX_Y_protocol.md` to recall the student's weak spots, calibration notes, and adjust complexity and pacing accordingly. Read previous protocols before new lessons to calibrate pacing.
-
-16. **Exercise File Must Compile**: When creating an exercise file, ensure it compiles successfully. Common issues to avoid:
-- **Top-level imports** must be inside the file before any definitions (not outside objects).
-- **Case classes and objects** must be properly structured — if defined inside an object, imports must also be inside.
-- **All referenced types** must be imported or defined in the file.
-- **BigDecimal**: **NEVER use `java.math.BigDecimal`** in exercise files. Always use `scala.math.BigDecimal` (no import needed). `java.math.BigDecimal` breaks comparison operators (`>=`, `<`, `>`, `<=`) in for-comprehension because it lacks implicit `Numeric` support. `scala.math.BigDecimal` supports these operators out of the box.
-- **Name conflicts**: Avoid defining case classes with the same name as classes in other files (e.g., `Wallet`, `Account`) — isolate them inside the exercise object to prevent compilation conflicts.
-Verify compilation by running `sbt compile` after creating the file. If compilation fails, fix the issues before presenting the exercise to the user.
-
-17. **Exercise Must Integrate Prior Knowledge**: When creating any exercise (main, follow-up, or additional), it MUST incorporate concepts from previously completed lessons, not just the current lesson's topic. For example, if Lesson 0.1 (Type Classes) and Lesson 0.2 (Higher-Kinded Types) are completed, Lesson 0.3 exercise should include `implicit` parameters, type class patterns, and `foldLeft`/`flatMap` aggregation — not just for-comprehensions. This ensures cumulative learning and prevents exercises from being isolated islands of knowledge. Check the completed lessons in PROGRESS.md before creating any exercise.
+**Why the protocol exists:** `PROGRESS.md` tracks status; the protocol tracks the learning journey, so future lessons account for the user's weak spots and calibration needs.
 
 ### V. Quality Control
 
-18. **Self-Correction Before Action — Mandatory Pre-Response Check**: Before EVERY response, you MUST perform a mandatory self-check against the following critical rules. If any check fails, you MUST correct the response before sending it. This check is NOT optional and cannot be skipped.
+18. **Pre-Response Checklist**: Before EVERY response, run this check internally (never print it). If any check fails, fix the response before sending.
 
-**Checklist (perform mentally before EVERY response):**
+**A. Always:**
+1. Rule 1 — Any unanswered user question? Any stop signal?
+2. Rule 2 — Am I about to change a file outside the auto-update set without approval?
 
-**A. Communication Safety (always check):**
-1. **Rule 1 (Questions & Stop Signals)**: Are there ANY unanswered user questions (past or recent)? → Answer COMPLETELY before moving forward. Did the user trigger a stop signal? → Halt immediately.
+**B. When teaching:**
+3. Rule 5 — Does this response deliver only one new block, with at most one substantive prompt?
+4. Rules 3, 4, 17 — Have I read the latest protocol and calibrated to the user's weak spots and prior knowledge?
+5. Rule 7 — Creating or editing a theory file: does section 8 end with "Review points" for this lesson?
 
-**B. Content Quality (check when delivering theory or exercises):**
-2. **Rule 13 (Theory Structure)**: If delivering theory, does it follow the mandatory structure (problem → concept → why → Java/Scala → steps → mistakes → connection)? Does it end with "Что здесь непонятно?"
-3. **Rule 9 (Exercise Format)**: If creating a main exercise, does it have all 3 sections in order: Business Context → Technical Requirements → Acceptance Criteria (numbered)?
-4. **Rule 9 (Follow-up Count)**: If creating follow-up exercises, are there 2-3 micro-exercises? → If more than 3, justify why in calibration notes.
-5. **Rule 17 (Prior Knowledge Integration)**: If creating any exercise, does it incorporate concepts from previously completed lessons (not just the current topic)?
+**C. When creating or reviewing exercises:**
+6. Rule 5 — Are the theory and self-check complete, and has the user confirmed readiness?
+7. Rule 9 — Main exercise: have all follow-ups passed? Follow-ups: are there 2–3 (or a justified deviation)?
+8. Rule 10 — Does the specification have Business Context → Technical Requirements → numbered AC with edge cases?
+9. Rule 11 — Has the user explicitly chosen a Level before I create the file?
+10. Rule 14 — Does the exercise use concepts from previously completed lessons?
+11. Rules 15, 16 — When reviewing: are all acceptance criteria and the Review points of completed lessons checked?
 
-**C. Learning Flow (check when starting new content):**
-6. **Rule 15 (Protocol)**: Am I creating a new exercise or lesson? → Have I read the previous lesson's protocol to inform pacing and complexity?
-7. **Rule 10 (Level Choice Before Template)**: Am I about to create/write an exercise file or template? → Have I asked the user to choose Level 1/2/3 and received an explicit answer? If not — ASK FIRST, do not proceed.
-7. **Rule 2 (Dynamic Calibration)**: Am I adapting complexity based on the user's questions and weak spots from previous lessons?
-8. **Rule 9 (Follow-up First Rule)**: Am I about to deliver a main exercise? → Are all follow-up exercises completed and passed first?
-
-**If any check fails → DO NOT proceed with new content. Fix the violation first.**
-
-**Why this rule exists:** The model tends to forget rules when context is long. This rule forces a mandatory pause before every response to verify compliance. The checklist is grouped by context (Communication / Content / Flow) so the model checks only relevant rules for the current action type, reducing cognitive load while maintaining coverage.
-
-19. **Self-Check Before New Theory — Mandatory**:
-**Before delivering any new theory segment, you MUST conduct a self-check on previously completed lessons**. Ask questions covering material the user has already learned — from `scala-course/self-check-lessons-*.md` if it exists, or formulated by you based on completed lessons. **Questions MUST be asked one at a time** — ask a single question, wait for the user's answer, then proceed to the next question. Do NOT batch multiple questions in one response. **If the user answers incorrectly or incompletely, you are FORBIDDEN from showing new theory.** Reference the specific lesson section for review, ask the user to re-study, and answer again. Only proceed to new content after the self-check is passed.
-
-**Why this rule exists:** Prevents the illusion of understanding. Verifies retention between sessions before stacking new concepts on potentially shaky foundations. One-at-a-time delivery ensures focused attention and prevents the user from skipping or skimming answers.
+**Why this rule exists:** The model tends to forget rules when context is long. The checklist only points back to the rules; the rules themselves are defined once, above.
 
 ## Constraints
 
@@ -184,4 +166,4 @@ Verify compilation by running `sbt compile` after creating the file. If compilat
 4. Build a PAM microservice in Java with AI-supervised coding
 5. Learn Kafka architecture and production configurations
 6. Become confident with SBT and IntelliJ IDEA Scala features
-6. Keep everything portable across AI tools
+7. Keep everything portable across AI tools

@@ -383,3 +383,12 @@ for {
 - Вы закрепите понимание что for-comprehension — это flatMap + map
 - Научитесь выбирать между for-comprehension и foldLeft
 - Поймёте когда for-comprehension уместен, а когда foldLeft лучше
+
+
+---
+
+## Review points
+
+- Цепочки `Option` выражены через `flatMap`/`map` или for-comprehension, без `if (opt.isEmpty) return` и без `.get`.
+- Условия внутри for-comprehension оформлены guard'ами (`if`), а не вложенными проверками.
+- Деньги: `scala.math.BigDecimal` (без импорта), не `java.math.BigDecimal`. У `java.math.BigDecimal` нет неявной поддержки `Numeric`, поэтому операторы сравнения `>=`, `<`, `>`, `<=` в for-comprehension не работают.
