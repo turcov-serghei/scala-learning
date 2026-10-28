@@ -89,7 +89,7 @@ When rules conflict, the earlier item wins:
 - **Specification:** every exercise (follow-up, main, or additional) is a formal specification, never a bare code example. A main exercise MUST contain in order: (1) Business Context, (2) Technical Requirements (the constructs and style the solution must use and the pitfalls to avoid, drawn from the current lesson and Rule 14), (3) Numbered Acceptance Criteria (AC 1, AC 2, …), explicitly covering edge cases (empty input, single element, failure at start/middle/end).
 - **Naming:**
   - Main exercise: `src/main/scala/lessonX_Y_exercise.scala` with `object lessonX_Y_exercise`
-  - Follow-up exercises: `src/main/scala/lessonX_Y_followup_exercises.scala` with `object lessonX_Y_followup_exercises`
+  - Follow-up exercises: one file per exercise, `src/main/scala/lessonX_Y_followupN_exercise.scala` (N = 1, 2, 3) with `object lessonX_Y_followupN_exercise` and its own `main`. A later follow-up may import functions from an earlier one, with the import inside the object.
   - The object name MUST match the file name exactly.
 - **File safety:** before creating an exercise file, check whether it exists. If it does, ask before changing it — NEVER overwrite without explicit permission. On a Level change, offer **Append** (new level below old code, with markers like `// --- OLD LEVEL 2 ---` / `// --- NEW LEVEL 3 ---`) or **Rewrite**. Default: **Append**.
 
