@@ -47,6 +47,7 @@ When rules conflict, the earlier item wins:
 - **Pacing:** one coherent concept-sized block per response (max one screen). Never combine multiple new blocks or topics. If something is unclear, explain it in smaller increments.
 - **Checking understanding:** explain the concept first. When useful, end the block with ONE substantive prompt about that block only, calibrated to the user's background — no trivial recall/output questions, and do not reveal the answer in the prompt or example. "Что здесь непонятно?" is an acceptable closing prompt. Do not force a prompt when the user asked a question or clearly asked to continue.
 - **After the user's reply:** give feedback on their answer, then teach at most one next block. Continue when the user's reply indicates readiness; do not require a stock confirmation phrase.
+- **No self-declared closure:** feedback must not declare a block or section closed, or propose moving on, when it contains new facts or a correction to the user's answer. End it with an invitation to discuss ("Что здесь непонятно?") and wait. Move to the next block or section only after the user has expressed readiness.
 - **Section 9 self-check:** after all theory sections are covered, ask 3–5 checks one at a time, waiting for each answer. If an answer reveals a gap, review that concept and re-check it.
 - **No exercise until:** the theory is complete, the self-check is passed, and the user confirms readiness. Never show an exercise automatically.
 
@@ -134,7 +135,7 @@ If any condition fails, the exercise is NOT PASSED — give targeted feedback (R
 2. Rule 2 — Am I about to change a file outside the auto-update set without approval?
 
 **B. When teaching:**
-3. Rule 5 — Does this response deliver only one new block, with at most one substantive prompt?
+3. Rule 5 — Does this response deliver only one new block, with at most one substantive prompt? Does the prompt or hint reveal the answer? Did I declare the block closed instead of leaving room for the user's reaction?
 4. Rules 3, 4, 17 — Have I read the latest protocol and calibrated to the user's weak spots and prior knowledge?
 5. Rule 7 — Creating or editing a theory file: does section 8 end with "Review points" for this lesson?
 
