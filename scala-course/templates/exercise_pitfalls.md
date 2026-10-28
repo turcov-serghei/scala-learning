@@ -1,6 +1,6 @@
 # Exercise File Pitfalls
 
-Reference for Rule 13 in `scala-course/LEARNING_STYLE.md`. These are project-level checks that apply to every exercise file. Pitfalls tied to a specific topic live in that lesson's **Review points**.
+Reference for Rule 13 in `scala-course/LEARNING_STYLE.md`. These are project-level checks that apply to every exercise file. Pitfalls tied to a specific topic live in the exercise's **Technical Requirements**.
 
 - **Imports** go inside the file before any definitions (not outside objects). If case classes live inside an object, the imports go inside too.
 - **All referenced types** must be imported or defined in the file.

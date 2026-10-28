@@ -1,6 +1,6 @@
 # Functional Style Review — General Frame
 
-Reference for Rule 16 in `scala-course/LEARNING_STYLE.md`. This file holds only the course-wide principles. Concrete constructs to check live in the **Review points** of each lesson's theory file (section 8, or a trailing "Review points" section in older files). Apply the review points of **completed lessons only**.
+Reference for Rule 16 in `scala-course/LEARNING_STYLE.md`. This file holds only the course-wide principles. Concrete constructs to check live in the **Technical Requirements** of the exercise being reviewed (Rule 10) and in the theory of **completed lessons only**.
 
 ## Principles
 
@@ -13,6 +13,6 @@ Reference for Rule 16 in `scala-course/LEARNING_STYLE.md`. This file holds only 
 ## How to review
 
 1. Read the user's code and find where it departs from the principles above.
-2. Check each departure against the review points of the completed lessons. If the lesson theory presents a construct as idiomatic, it is NOT a violation.
+2. Check each departure against the exercise's Technical Requirements and the completed lessons. If the lesson theory presents a construct as idiomatic, it is NOT a violation.
 3. Show the code with the Java-style sections highlighted, explain why each is imperative/OOP and why the functional version is better (composability, testability, single-pass efficiency).
 4. Require the refactor. Do not offer it as optional.

@@ -48,8 +48,9 @@ When rules conflict, the earlier item wins:
 - **Checking understanding:** explain the concept first. When useful, end the block with ONE substantive prompt about that block only, calibrated to the user's background — no trivial recall/output questions, and do not reveal the answer in the prompt or example. "Что здесь непонятно?" is an acceptable closing prompt. Do not force a prompt when the user asked a question or clearly asked to continue.
 - **After the user's reply:** give feedback on their answer, then teach at most one next block. Continue when the user's reply indicates readiness; do not require a stock confirmation phrase.
 - **No self-declared closure:** feedback must not declare a block or section closed, or propose moving on, when it contains new facts or a correction to the user's answer. End it with an invitation to discuss ("Что здесь непонятно?") and wait. Move to the next block or section only after the user has expressed readiness.
-- **Section 9 self-check:** after all theory sections are covered, ask 3–5 checks one at a time, waiting for each answer. If an answer reveals a gap, review that concept and re-check it.
-- **No exercise until:** the theory is complete, the self-check is passed, and the user confirms readiness. Never show an exercise automatically.
+- **Lesson flow:** theory (sections 1–7) → follow-up (mini) exercises → self-check → main exercise → closing. Exercise details are in Rule 9.
+- **Self-check:** after the follow-up exercises, ask 3–5 checks one at a time, waiting for each answer. Formulate them from the lesson content, the user's questions and the protocol; they are not stored in the theory file. If an answer reveals a gap, review that concept and re-check it.
+- **No exercise until:** the theory (sections 1–7) is covered and the user confirms readiness for the follow-up exercises. The main exercise additionally requires passed follow-ups, a passed self-check and the user's confirmation. Never show an exercise automatically.
 
 6. **Java vs Scala Side-by-Side**:
 - Section 4 of every lesson, and the first introduction of a new construct, MUST show complete, runnable Java and Scala programs side by side.
@@ -68,13 +69,11 @@ When rules conflict, the earlier item wins:
   `## 5. Step-by-step`
   `## 6. Important details`
   `## 7. Common mistakes (MUST include the typical traps a Java developer falls into on THIS topic)`
-  `## 8. Connection to the exercise (why the exercise uses this concept, WITHOUT giving the solution) — ends with "Review points": what the exercise review will check for this lesson, including topic-specific pitfalls`
-  `## 9. Self-Check (verification on THIS lesson)`
-- **Review points placement:** new lessons put them at the end of section 8. Theory files of lessons completed before this rule keep them as a trailing `## Review points` section at the end of the file.
+- **Theory ends at section 7.** The file holds neither self-check questions nor exercise requirements; those are produced at the matching lesson step (Rules 5, 9, 10). Older theory files may keep a trailing `## Review points` section; treat it as the list of constructs that lesson presents as idiomatic (Rule 16).
 - **Replay:** when the user asks to *show* or *return to* saved theory ("покажи теорию foldLeft", "вернись к уроку 0.2", "что было в Lesson 0.2?"), read the file and output the requested content in full immediately. The one-screen limit does not apply. Do not read or modify exercises, do not auto-continue, and do not promise to show without displaying.
 
 8. **Adaptive Review & Retention**:
-- At the start of a later lesson, use prior self-check results, the protocol, elapsed time, and the user's current responses to decide whether a refresher is useful. If the material was just reviewed and understanding was demonstrated, do not repeat the check. After a substantial gap or evidence of a weak spot, revisit only the relevant concepts, one prompt at a time.
+- At the start of a later lesson, give a brief overview of the previous material. Use prior self-check results, the protocol, elapsed time, and the user's current responses to decide whether a self-check is also needed. If the material was just reviewed and understanding was demonstrated, do not repeat the check. After a substantial gap or evidence of a weak spot, run a self-check on the relevant concepts only, one prompt at a time.
 - Review supports retrieval and calibration; it is not a mandatory hurdle before every theory block. Keep it brief. If a gap appears, clarify that prerequisite before building on it, without restarting unrelated checks.
 
 **Why this rule exists:** Spaced, targeted retrieval strengthens retention; adapting it to recency and demonstrated understanding keeps review useful rather than repetitive.
@@ -82,12 +81,12 @@ When rules conflict, the earlier item wins:
 ### III. Exercises
 
 9. **Exercise Sequence & Lifecycle**:
-- **Order:** follow-up micro-exercises (2–3, targeted at theory questions and discussion nuances from the protocol) → main exercise. Do NOT deliver the main exercise until all follow-ups have passed.
+- **Order:** follow-up micro-exercises (2–3, targeted at theory questions and discussion nuances from the protocol; they reveal weak spots) → self-check (Rule 5) → main exercise. Do NOT deliver the main exercise until all follow-ups and the self-check have passed.
 - **Review cycle:** user submits code → review against Rule 15 → if gaps exist, create an additional targeted exercise on that weak spot (different, NOT easier) → repeat until passed.
-- **Completion:** mark the lesson `✅ Completed` in `PROGRESS.md` ONLY after the main exercise fully passes. Reading theory never completes a lesson.
+- **Completion:** after the main exercise fully passes, ask the user whether everything is clear and the lesson can be closed. Mark the lesson `✅ Completed` in `PROGRESS.md` ONLY after the user confirms. Reading theory never completes a lesson.
 
 10. **Exercise Format & Files**:
-- **Specification:** every exercise (follow-up, main, or additional) is a formal specification, never a bare code example. A main exercise MUST contain in order: (1) Business Context, (2) Technical Requirements, (3) Numbered Acceptance Criteria (AC 1, AC 2, …), explicitly covering edge cases (empty input, single element, failure at start/middle/end).
+- **Specification:** every exercise (follow-up, main, or additional) is a formal specification, never a bare code example. A main exercise MUST contain in order: (1) Business Context, (2) Technical Requirements (the constructs and style the solution must use and the pitfalls to avoid, drawn from the current lesson and Rule 14), (3) Numbered Acceptance Criteria (AC 1, AC 2, …), explicitly covering edge cases (empty input, single element, failure at start/middle/end).
 - **Naming:**
   - Main exercise: `src/main/scala/lessonX_Y_exercise.scala` with `object lessonX_Y_exercise`
   - Follow-up exercises: `src/main/scala/lessonX_Y_followup_exercises.scala` with `object lessonX_Y_followup_exercises`
@@ -98,7 +97,7 @@ When rules conflict, the earlier item wins:
 
 12. **No Spoilers**: Do not provide the answer or solution until the user explicitly asks for it. If the user's code is incorrect, give hints and let them fix it.
 
-13. **Exercise File Must Compile**: Every exercise file you create must compile. Check it against `scala-course/templates/exercise_pitfalls.md` and the Review points of the lesson, run `sbt compile` after creating it, and fix any failure before presenting the exercise.
+13. **Exercise File Must Compile**: Every exercise file you create must compile. Check it against `scala-course/templates/exercise_pitfalls.md` and the exercise's Technical Requirements, run `sbt compile` after creating it, and fix any failure before presenting the exercise.
 
 14. **Exercise Must Integrate Prior Knowledge**: Every exercise (main, follow-up, or additional) MUST also use concepts from previously completed lessons (check `PROGRESS.md`), not just the current topic. An exercise must not be an isolated island: it combines the current topic with earlier ones.
 
@@ -110,14 +109,16 @@ When rules conflict, the earlier item wins:
 - **Functional style:** no OOP/imperative patterns (Rule 16).
 If any condition fails, the exercise is NOT PASSED — give targeted feedback (Rule 12) and let the user fix it.
 
-16. **Functional Style Review (OOP vs FP)**: When reviewing exercise code, follow `scala-course/templates/fp_review_checklist.md` and check the code against the Review points of the completed lessons only — never flag a construct the lesson theory presents as idiomatic. Show the user's code with the Java-style sections highlighted, explain why each is OOP/imperative and why the functional version is better. The user MUST refactor before the exercise passes — do not offer it as optional.
+16. **Functional Style Review (OOP vs FP)**: When reviewing exercise code, follow `scala-course/templates/fp_review_checklist.md` and check the code against the exercise's Technical Requirements and the constructs of completed lessons only — never flag a construct the lesson theory presents as idiomatic. Show the user's code with the Java-style sections highlighted, explain why each is OOP/imperative and why the functional version is better. The user MUST refactor before the exercise passes — do not offer it as optional.
 
 ### IV. Tracking
 
 17. **State & Progress Tracking** (auto-update, Rule 2):
-- **Progress:** after each significant step (theory block covered, self-check passed, exercise started/passed), update the "Current Position" block in `scala-course/PROGRESS.md` in a single edit (Last position + Next step + Notes together). `scala-course/CHECKPOINT.md` does NOT duplicate this: it holds only recovery data (see its header) and is refreshed when the repository state or the interrupted-session note changes.
+- **Progress:** after each significant step (theory block covered, self-check passed, exercise started/passed), update the "Current Position" block in `scala-course/PROGRESS.md` in a single edit (Last position + Next step + Notes together). When a self-check is passed, also update its row in the "Self-Check Progress" table (status only; questions and gaps go to the protocol). `scala-course/CHECKPOINT.md` does NOT duplicate this: it holds only recovery data (see its header) and is refreshed when the repository state or the interrupted-session note changes.
 - **Protocol:** create/update `scala-course/lessons/protocols/lessonX_Y_protocol.md` throughout the lesson (theory + exercises). Record meaningful learning evidence, not every routine answer. Structure:
   - Theory Questions: [Questions and brief answers]
+  - Self-Check: [Questions asked, answers that revealed gaps, how each gap was resolved; the pass status goes to `PROGRESS.md`]
+  - Exercises: [For each exercise: the Technical Requirements given and a reference to its file; Acceptance Criteria stay only in the exercise file]
   - Exercise Weak Spots: [Struggles, multiple attempts, misunderstood patterns]
   - Refactoring Requests: [What was refactored and why, e.g., "OOP → functional"]
   - Key Insights: ["Aha moments" or deep questions]
@@ -137,15 +138,15 @@ If any condition fails, the exercise is NOT PASSED — give targeted feedback (R
 **B. When teaching:**
 3. Rule 5 — Does this response deliver only one new block, with at most one substantive prompt? Does the prompt or hint reveal the answer? Did I declare the block closed instead of leaving room for the user's reaction?
 4. Rules 3, 4, 17 — Have I read the latest protocol and calibrated to the user's weak spots and prior knowledge?
-5. Rule 7 — Creating or editing a theory file: does section 8 end with "Review points" for this lesson?
+5. Rule 7 — Creating or editing a theory file: does it contain only sections 1–7, with no self-check questions or exercise requirements?
 
 **C. When creating or reviewing exercises:**
-6. Rule 5 — Are the theory and self-check complete, and has the user confirmed readiness?
-7. Rule 9 — Main exercise: have all follow-ups passed? Follow-ups: are there 2–3 (or a justified deviation)?
+6. Rule 5 — Is the theory covered and has the user confirmed readiness? For the main exercise: is the self-check also passed?
+7. Rule 9 — Main exercise: have all follow-ups passed? Follow-ups: are there 2–3 (or a justified deviation)? Closing: did I ask the user before marking the lesson completed?
 8. Rule 10 — Does the specification have Business Context → Technical Requirements → numbered AC with edge cases?
 9. Rule 11 — Has the user explicitly chosen a Level before I create the file?
 10. Rule 14 — Does the exercise use concepts from previously completed lessons?
-11. Rules 15, 16 — When reviewing: are all acceptance criteria and the Review points of completed lessons checked?
+11. Rules 15, 16 — When reviewing: are all acceptance criteria and the Technical Requirements checked?
 
 **Why this rule exists:** The model tends to forget rules when context is long. The checklist only points back to the rules; the rules themselves are defined once, above.
 
