@@ -8,13 +8,23 @@ A dual-language learning project combining PAM (Player Account Management) and T
 
 ## Tech Stack
 
-- **Scala Framework**: Kilo (Typelevel ecosystem)
-- **Reactive Library**: FS2 (Functional Streams for Scala)
+- **Scala**: 2.13 (`implicit`, `sealed trait` + `object` — more learning resources available). Lesson 2.6 (end of Module 2) moves the project to Scala 3 syntax (`given`/`using`, `enum`)
+- **Scala Framework**: http4s (Typelevel ecosystem — Cats Effect / FS2)
+- **Reactive Library**: FS2 (Functional Streams for Scala) — skip ZIO to keep focus sharp
 - **Communication**: REST, gRPC, WebSockets
 - **Messaging**: Apache Kafka
 - **Storage**: Cassandra (immutable ledger), OpenSearch (analytics), Valkey/Sentinel (caching)
-- **Build Tool**: SBT
-- **IDE**: IntelliJ IDEA (EAP)
+- **Build Tool**: SBT (configured in IntelliJ IDEA)
+- **IDE**: IntelliJ IDEA EAP — may expire, requiring migration to another tool (Cursor, VS Code, ChatGPT/Claude)
+
+## Course Goals
+
+1. Learn Scala from scratch through refactoring, not Hello World
+2. Understand functional types (type classes, higher-kinded types, monads) through Java analogies
+3. Build a Transaction, Wallet & Settlement engine in Scala using http4s and FS2
+4. Build a PAM microservice in Java with AI-supervised coding
+5. Learn Kafka architecture and production configurations
+6. Become confident with SBT and IntelliJ IDEA Scala features
 
 ---
 
@@ -55,10 +65,12 @@ A dual-language learning project combining PAM (Player Account Management) and T
 ### Lessons
 
 - **Lesson 2.1: Immutability Deep Dive** — Refactor mutable state to immutable designs. Learn why and how.
-- **Lesson 2.2: Monads in Scala** — Option, Either, Future. Build on Module 0's Java-first understanding.
-- **Lesson 2.3: For-Comprehensions in Practice** — Refactor nested reactive calls. Now you understand it's not a loop.
-- **Lesson 2.4: Type System Basics** — Generics vs type parameters, variance, bounds.
-- **Exercise 2**: Refactor a Java service with nested Optionals into Scala with for-comprehensions.
+- **Lesson 2.2: Errors as Values** — `Either`, error ADTs, `Either` in for-comprehensions. Builds on Module 0 (`Future` moves to Module 3 together with Cats Effect).
+- **Lesson 2.3: For-Comprehensions in Practice** — Refactor nested calls across `Option`, `Either` and `List`. Now you understand it's not a loop.
+- **Lesson 2.4: Testing (MUnit)** — Tests for pure functions and domain rules.
+- **Lesson 2.5: Type System Basics** — Generics vs type parameters, variance, bounds, and Scala's `Any` / `AnyVal` / `AnyRef` hierarchy.
+- **Lesson 2.6: Scala 3** — `given`/`using`, `enum`, extension methods; migrate `build.sbt`.
+- **Exercise 2**: Refactor a Java service with `Optional` and exceptions into Scala with `Either`, for-comprehensions and MUnit tests.
 
 ---
 
@@ -68,10 +80,11 @@ A dual-language learning project combining PAM (Player Account Management) and T
 
 ### Lessons
 
-- **Lesson 3.1: Bridging Reactor to Scala** — Compare Flux/Mono to Scala's Future/Promise and FS2 equivalents.
-- **Lesson 3.2: FS2 Introduction** — Functional Streams for Scala. Core concepts, syntax, and operators.
-- **Lesson 3.3: Backpressure in Practice** — Implement and understand backpressure strategies in FS2.
-- **Lesson 3.4: Kafka Integration** — Event-driven architecture with reactive streams, production configs.
+- **Lesson 3.1: Cats Effect** — `IO`, `Resource`, `Ref`, error handling. FS2 builds on it.
+- **Lesson 3.2: Bridging Reactor to Scala** — Compare Flux/Mono to Scala's `Future`/`Promise`, `IO` and FS2 equivalents.
+- **Lesson 3.3: FS2 Introduction** — Functional Streams for Scala. Core concepts, syntax, and operators.
+- **Lesson 3.4: Backpressure in Practice** — Implement and understand backpressure strategies in FS2.
+- **Lesson 3.5: Kafka Integration** — Event-driven architecture with reactive streams, production configs.
 - **Exercise 3**: Build a reactive transaction event pipeline with FS2 and Kafka.
 
 ---
@@ -95,13 +108,15 @@ A dual-language learning project combining PAM (Player Account Management) and T
 
 ### Lessons
 
-- **Lesson 5.1: Kilo Framework Basics** — Routing, middleware, and structure.
-- **Lesson 5.2: OpenSpec Contract-First Design** — Define APIs first, implement later.
-- **Lesson 5.3: gRPC + WebSockets** — Real-time balance updates and transaction events.
-- **Lesson 5.4: Kafka for Event-Driven Architecture** — Streaming financial events and wallet state updates.
-- **Lesson 5.5: Cassandra for Immutable Ledger** — Schema design, writes, and reads for audit logs.
-- **Lesson 5.6: Valkey (Sentinel) for Caching** — Fast balance checkouts and session caching.
-- **Exercise 5**: Implement a complete deposit/withdrawal flow with all infrastructure components.
+- **Lesson 5.1: http4s Basics** — Routing, middleware, and structure.
+- **Lesson 5.2: JSON (circe) and HTTP Error Responses** — Encoding and decoding domain types, mapping domain errors to HTTP responses.
+- **Lesson 5.3: OpenSpec Contract-First Design** — Define APIs first, implement later.
+- **Lesson 5.4: gRPC + WebSockets** — Real-time balance updates and transaction events.
+- **Lesson 5.5: Kafka for Event-Driven Architecture** — Streaming financial events and wallet state updates.
+- **Lesson 5.6: Cassandra for Immutable Ledger** — Schema design, writes, and reads for audit logs.
+- **Lesson 5.7: Valkey (Sentinel) for Caching** — Fast balance checkouts and session caching.
+- **Exercise 5A**: Implement the deposit/withdrawal flow over http4s with an in-memory ledger.
+- **Exercise 5B**: Replace the in-memory parts with Kafka, Cassandra and Valkey.
 
 ---
 

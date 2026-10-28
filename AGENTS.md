@@ -4,7 +4,7 @@
 
 This project is a **Scala learning course** for a Java Senior Developer transitioning to Scala. The course teaches functional programming concepts through **Java-first analogies** and **realistic refactoring exercises** (payments, wallets, settlements), not "Hello World."
 
-**Goal:** Build a Transaction, Wallet & Settlement engine in Scala using Kilo and FS2, while learning functional types, monads, and reactive programming.
+**Goals and tech stack:** defined only in `scala-course/SYLLABUS.md` (Course Goals, Tech Stack).
 
 ---
 
@@ -20,21 +20,28 @@ Teaching rules (questions first, pacing, progress updates) are defined only in `
 ## Project Structure
 
 ```
-scala-course/
-├── README.md                  ← You are here — guide for AI agents
-├── BACKGROUND.md              ← User profile (Java Senior, experience, skill levels) — READ FIRST
-├── LEARNING_STYLE.md          ← Strict rules for teaching
-├── SYLLABUS.md                ← Full course plan (Modules 0-6)
-├── PROGRESS.md                ← Current progress tracker
-├── templates/                 ← Exercise code templates (Level 1/2/3 skeletons)
-├── lessons/                   ← Theory files (lessonX_Y_theory.md), grows dynamically
-├── lessons/protocols/         ← Learning history (lessonX_Y_protocol.md), grows dynamically
-└── plans/                     ← Historical artifacts from initial setup
+.
+├── AGENTS.md                  ← You are here — guide for AI agents
+├── GIT_RULES.md               ← Git workflow rules
+├── README.md                  ← Short project overview
+├── build.sbt                  ← SBT build (Scala 2.13)
+├── src/main/scala/            ← Exercise and scratch files (lessonX_Y*.scala, *.sc)
+└── scala-course/
+    ├── CHECKPOINT.md          ← Session recovery data (repository state, interrupted step)
+    ├── BACKGROUND.md          ← User profile (Java Senior, experience, skill levels) — READ FIRST
+    ├── LEARNING_STYLE.md      ← Strict rules for teaching
+    ├── SYLLABUS.md            ← Full course plan (Modules 0-6)
+    ├── PROGRESS.md            ← Current progress tracker
+    ├── templates/             ← Exercise code templates and review checklists
+    ├── lessons/               ← Theory files (lessonX_Y_theory.md), grows dynamically
+    ├── lessons/protocols/     ← Learning history (lessonX_Y_protocol.md), grows dynamically
+    ├── self-check-lessons-0-1-to-0-4.md ← Archive of old-format self-check questions
+    └── plans/                 ← Historical artifacts from initial setup
 ```
 
 **Note:** The `lessons/` and `protocols/` directories grow dynamically as new lessons are delivered. Do not list individual files here — just describe what each directory contains.
 
-Exercise files (`src/main/scala/lesson*.scala`) are created per-lesson and are not tracked in this README.
+Exercise files (`src/main/scala/lesson*.scala`) are created per-lesson and are not listed in this file.
 
 ---
 
@@ -58,7 +65,7 @@ Current status of each lesson/exercise. **Start with the "Current Position" sect
 
 ### `scala-course/CHECKPOINT.md` — Session Checkpoint
 
-**Recovery aid only.** Contains the ordered list of files to read, the repository state (branch, last commit, uncommitted work), and a note about an interrupted step. It does NOT hold learning progress — that lives only in `PROGRESS.md`. **Read this file first when starting a new or recovered session.**
+**Recovery aid only.** Contains the repository state (branch, last commit, uncommitted work), and a note about an interrupted step. It does NOT hold learning progress — that lives only in `PROGRESS.md`. **Read this file first when starting a new or recovered session.**
 
 ### `scala-course/templates/` — Exercise Code Templates
 
@@ -70,12 +77,7 @@ Each lesson has a Markdown file containing the complete theory delivered during 
 
 ### `scala-course/lessons/protocols/` — Learning History
 
-Protocol files record the learning journey for each lesson:
-- **Theory Questions**: Questions asked during theory (reveal conceptual gaps or deep understanding)
-- **Exercise Weak Spots**: Where the user struggled, what required multiple attempts
-- **Refactoring Requests**: What was refactored and why (OOP → FP)
-- **Key Insights**: "Aha moments" and particularly good questions
-- **Calibration Notes**: What to emphasize/simplify/accelerate in future lessons
+Protocol files record the learning journey for each lesson (theory questions, self-check, exercises, weak spots, insights, calibration notes). The exact structure is defined in Rule 17 of `scala-course/LEARNING_STYLE.md`.
 
 **These protocols are the basis for calibrating future lessons.** Before starting a new lesson, read the previous lesson's protocol.
 
@@ -83,7 +85,7 @@ Protocol files record the learning journey for each lesson:
 
 Project-level git rules for every AI agent (Claude Code, Kilo, others). **Read this file before any git operation.**
 
----
+### `scala-course/plans/` — Historical Artifacts
 
 Historical artifacts from Junie's internal task tracking. Not needed for continuing the course.
 
@@ -95,11 +97,13 @@ Historical artifacts from Junie's internal task tracking. Not needed for continu
 
 When starting a new session, follow these steps:
 
-0. **Read `scala-course/CHECKPOINT.md`** — Concise session summary and file reading order.
+0. **Read `scala-course/CHECKPOINT.md`** — Repository state and the interrupted-step note (recovery data only, not learning progress).
 1. **Read `scala-course/BACKGROUND.md`** — Understand who you are teaching (Java Senior, experience, skill levels).
 2. **Read `scala-course/LEARNING_STYLE.md`** — Understand the strict rules before doing anything.
 3. **Read `scala-course/PROGRESS.md` "Current Position" section** — This is your resume checkpoint. It tells you the exact last position (theory part delivered, next step, key decisions) so you can continue from where the previous session stopped.
-4. **Read `scala-course/lessons/protocols/`** — Review recent protocols to understand user's learning patterns, weak spots, and strengths.
-5. **Check `scala-course/SYLLABUS.md`** — Know the full course structure and where we are.
-6. **Resume from checkpoint** — Follow the "Next step" from Current Position. If a lesson is `🔄 In progress`, continue from the checkpoint. If the last lesson is `✅ Completed`, proceed to the next lesson in the syllabus.
+4. **Read the latest protocol in `scala-course/lessons/protocols/`** — Weak spots, calibration notes, and the user's learning patterns.
+5. **Read the current lesson's theory file in `scala-course/lessons/`** — Needed to continue a lesson that is in progress.
+6. **Check `scala-course/SYLLABUS.md`** when starting a new lesson or module, and before writing any code (Tech Stack: Scala version) — Know what comes next.
+7. **Resume from checkpoint** — Follow the "Next step" from Current Position. If a lesson is `🔄 In progress`, continue from the checkpoint. If the last lesson is `✅ Completed`, proceed to the next lesson in the syllabus.
 
+This list is the single source for the reading order; other files point here instead of repeating it.

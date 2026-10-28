@@ -159,20 +159,5 @@ If any condition fails, the exercise is NOT PASSED — give targeted feedback (R
 
 ## Constraints
 
-- **IDE**: Using IntelliJ IDEA EAP — may expire, requiring migration to another tool (Cursor, VS Code, ChatGPT/Claude)
-- **Portability**: All course artifacts must be in standard Markdown files for tool-agnostic portability
-- **Scala Version**: Scala 2.13 (using `implicit`, `sealed trait` + `object` — more learning resources available)
-- **Build Tool**: SBT (configured in IntelliJ IDEA)
-- **Future migration**: After Module 2, transition to Scala 3 syntax (`given`/`using`, `enum`)
-- **Framework**: Kilo for Scala (Typelevel ecosystem — Cats Effect / FS2)
-- **Reactive Library**: FS2 (Functional Streams for Scala) — skip ZIO to keep focus sharp
-
-## Course Goals
-
-1. Learn Scala from scratch through refactoring, not Hello World
-2. Understand functional types (type classes, higher-kinded types, monads) through Java analogies
-3. Build a Transaction, Wallet & Settlement engine in Scala using Kilo and FS2
-4. Build a PAM microservice in Java with AI-supervised coding
-5. Learn Kafka architecture and production configurations
-6. Become confident with SBT and IntelliJ IDEA Scala features
-7. Keep everything portable across AI tools
+- **Portability**: All course artifacts must be in standard Markdown files for tool-agnostic portability; rules and state live only in the repository
+- **Tech stack, Scala version and goals**: defined only in `scala-course/SYLLABUS.md` (Tech Stack, Course Goals). Read it before writing any code
