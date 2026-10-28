@@ -9,7 +9,6 @@
 - **Refactoring pattern**: Start with Java code → Rewrite to Scala step-by-step → Explain the why → Exercise → Review
 - **Pace**: Flexible — wants fast progress but adaptable depending on the day (flexible schedule)
 - **Hands-on over theory** — Prefer code examples and exercises over pure theory
-- **Realistic code** — Use domain-relevant code (payments, settlements, wallets) rather than toy examples
 
 ## Strict Rules
 
@@ -87,9 +86,16 @@ When rules conflict, the earlier item wins:
 
 10. **Exercise Format & Files**:
 - **Specification:** every exercise (follow-up, main, or additional) is a formal specification, never a bare code example. A main exercise MUST contain in order: (1) Business Context, (2) Technical Requirements (the constructs and style the solution must use and the pitfalls to avoid, drawn from the current lesson and Rule 14), (3) Numbered Acceptance Criteria (AC 1, AC 2, …), explicitly covering edge cases (empty input, single element, failure at start/middle/end).
+- **Quality bar:** every exercise (follow-up, main, or additional) MUST satisfy all of:
+  - **Coherent:** the rules form one consistent business model; inputs relate to each other; no unrelated checks added for the sake of a construct.
+  - **Unambiguous:** every requirement is testable; the order and priority of checks are explicit; for every input it is defined whether it is valid, including empty and malformed values. Two readers must not be able to interpret a requirement differently.
+  - **Non-trivial for a Java Senior:** it needs a decision (rule order, composition of steps, a trap tied to the lesson concept), not a mechanical translation of the statement into code. At least one AC cannot be passed by a literal reading of the statement.
+  - **Realistic:** a scenario from the user's domains (payments, settlements, wallets; see `BACKGROUND.md`), not a toy example.
+  - **Follow-up (mini):** simple to implement and focused on one lesson concept or weak spot, to consolidate the theory. The number of functions or AC does not define it: many edge cases are fine. The difficulty comes from the concept, not from the volume of logic or unrelated constructs.
+  - **Main exercise:** varied. Several scenarios and kinds of tasks (for example validation, transformation, composition of steps), combining the current concept with earlier ones (Rule 14).
 - **Naming:**
   - Main exercise: `src/main/scala/lessonX_Y_exercise.scala` with `object lessonX_Y_exercise`
-  - Follow-up exercises: one file per exercise, `src/main/scala/lessonX_Y_followupN_exercise.scala` (N = 1, 2, 3) with `object lessonX_Y_followupN_exercise` and its own `main`. A later follow-up may import functions from an earlier one, with the import inside the object.
+  - Follow-up exercises: one file per exercise, `src/main/scala/lessonX_Y_followupN_exercise.scala` (N = 1, 2, 3) with `object lessonX_Y_followupN_exercise` and its own `main`. A later follow-up may import functions from an earlier one.
   - The object name MUST match the file name exactly.
 - **File safety:** before creating an exercise file, check whether it exists. If it does, ask before changing it — NEVER overwrite without explicit permission. On a Level change, offer **Append** (new level below old code, with markers like `// --- OLD LEVEL 2 ---` / `// --- NEW LEVEL 3 ---`) or **Rewrite**. Default: **Append**.
 
@@ -147,6 +153,7 @@ If any condition fails, the exercise is NOT PASSED — give targeted feedback (R
 9. Rule 11 — Has the user explicitly chosen a Level before I create the file?
 10. Rule 14 — Does the exercise use concepts from previously completed lessons?
 11. Rules 15, 16 — When reviewing: are all acceptance criteria and the Technical Requirements checked?
+12. Rule 10 — Before delivering an exercise: does it meet the Quality bar (coherent, unambiguous, non-trivial for a Java Senior, realistic, right for its role: a focused follow-up or a varied main exercise)? Could two readers interpret a requirement differently?
 
 **Why this rule exists:** The model tends to forget rules when context is long. The checklist only points back to the rules; the rules themselves are defined once, above.
 
