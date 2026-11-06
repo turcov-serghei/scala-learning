@@ -2,14 +2,19 @@
 
 ## Current Position
 
-**Active exercise:** Ad-hoc — Lesson 0.1 trait vs interface (completed)
-**Last position:** Ad-hoc theory delivered (State, Multiple inheritance). Exercise `lesson0_1_adhoc.scala` completed and passed. Constructor params removed (Scala 3 only).
-**Next step:** Exercise 0 completed. Proceed to Module 1 or new material.
+_Last updated: 2026-10-28_
+
+**Active exercise:** Lesson 1.1 follow-ups 1–3 done (follow-up 3: all AC pass, written answer `Any` accepted after discussion); self-check in progress
+**Last position:** Lesson 1.1: theory 1–7 covered, follow-ups 1–3 passed. Self-check: Q1 passed; Q2 (`Option` vs Java `null` at the boundary) answered and the review was delivered (`Some(null)` does not throw and is the leak; `None.get` throws `NoSuchElementException`). The user will discuss the Q2 review in the next session.
+**Next step:** Next session: start with the user's reaction to the Q2 review (answer questions first, do not move on until the user is ready); then 1–2 more self-check questions one at a time, only on taught material; then the main exercise (spec with Technical Requirements, Quality bar in Rule 10). `Any`/`AnyRef`/`AnyVal` hierarchy is scheduled in Lesson 2.5.
 **Notes:**
-- Ad-hoc: trait state (Named, Auditable) — упражнение пройдено, компиляция OK
-- Ad-hoc: constructor params в trait — удалён (Scala 3 фича)
-- Ad-hoc: multiple inheritance — доставлен + упражнение пройдено
-- Self-check: 0.1 Q1-Q5 done; 0.2 Q1-Q4 done
+- Monad laws remain difficult for the user; revisit them gradually with concrete examples.
+- User explicitly requested an interactive, block-by-block course following `lesson1_1_theory.md`; ask only non-trivial questions about concepts already explained and give feedback before proceeding.
+- Java comparisons must acknowledge equivalent Java constructs (e.g. `if` + `return`, ternary); explain semantic differences without presenting Scala as uniquely capable.
+- Lesson 1.1 is the first lesson in Module 1; the follow-up exercises start only after the user confirms readiness, the main exercise only after follow-ups and self-check are passed.
+- Pending after Lesson 1.1 closes: explain `flatMap` vs `map` on `Option` with `totalDebit` (user request, see the Lesson 1.1 protocol). Do not explain earlier unless the user asks.
+- Pending (user postponed): explain value discarding (`Boolean` vs expected `Unit`), see the Lesson 1.1 protocol.
+- Previous checkpoint notes: ad-hoc Lesson 0.1 exercises completed; self-checks 0.1-0.4 passed (Lesson 0.4 laws needed clarification).
 
 ---
 
@@ -30,7 +35,7 @@
 | ✅ | Lesson 0.2: Higher-Kinded Types | 2026-10-07 | 2026-10-07 | Усвоено: F[_], foldLeft, flatMap/map на Option, функциональный стиль vs Java-style |
 | ✅ | Lesson 0.3: For-Comprehensions Decoded | 2026-10-07 | 2026-10-09 | Усвоено: for-comprehension desugaring, guards, `<-` vs `=`, `<-` на List (итерация). Затык: foldLeft агрегация — требует закрепления в уроке 0.4 |
 | ✅ | Lesson 0.4: Monads Explained | 2026-10-12 | 2026-10-15 | Теория и упражнения завершены. Main Exercise 0.4 (Level 1) успешно пройден. |
-| ✅ | Exercise 0: Optional → Option refactoring | 2026-10-21 | — | for-comprehension with Option, find, yield. Compiles, tests pass. |
+| ✅ | Exercise 0: Optional → Option refactoring | 2026-10-21 | 2026-10-21 | for-comprehension with Option, find, yield. Compiles, tests pass. |
 
 ---
 
@@ -49,7 +54,7 @@
 
 | Status | Item | Date Started | Date Completed | Notes |
 |--------|------|--------------|----------------|-------|
-| ⬜ | Lesson 1.1: Variables, Types, Control Structures | — | — | |
+| 🔄 | Lesson 1.1: Variables, Types, Control Structures | 2026-10-22 | — | Theory 1–7 covered; follow-ups, self-check and main exercise pending. Monad laws noted as difficult; revisit gradually. |
 | ⬜ | Lesson 1.2: Case Classes, Pattern Matching | — | — | |
 | ⬜ | Lesson 1.3: Collections, Immutability | — | — | |
 | ⬜ | Lesson 1.4: Functions, Higher-Order Functions | — | — | |
@@ -62,10 +67,12 @@
 | Status | Item | Date Started | Date Completed | Notes |
 |--------|------|--------------|----------------|-------|
 | ⬜ | Lesson 2.1: Immutability Deep Dive | — | — | |
-| ⬜ | Lesson 2.2: Monads in Scala | — | — | |
+| ⬜ | Lesson 2.2: Errors as Values | — | — | |
 | ⬜ | Lesson 2.3: For-Comprehensions in Practice | — | — | |
-| ⬜ | Lesson 2.4: Type System Basics | — | — | |
-| ⬜ | Exercise 2: Nested Optionals refactoring | — | — | |
+| ⬜ | Lesson 2.4: Testing (MUnit) | — | — | |
+| ⬜ | Lesson 2.5: Type System Basics | — | — | |
+| ⬜ | Lesson 2.6: Scala 3 | — | — | |
+| ⬜ | Exercise 2: Optional/exceptions → Either + MUnit refactoring | — | — | |
 
 ---
 
@@ -73,10 +80,11 @@
 
 | Status | Item | Date Started | Date Completed | Notes |
 |--------|------|--------------|----------------|-------|
-| ⬜ | Lesson 3.1: Bridging Reactor to Scala | — | — | |
-| ⬜ | Lesson 3.2: FS2 Introduction | — | — | |
-| ⬜ | Lesson 3.3: Backpressure in Practice | — | — | |
-| ⬜ | Lesson 3.4: Kafka Integration | — | — | |
+| ⬜ | Lesson 3.1: Cats Effect | — | — | |
+| ⬜ | Lesson 3.2: Bridging Reactor to Scala | — | — | |
+| ⬜ | Lesson 3.3: FS2 Introduction | — | — | |
+| ⬜ | Lesson 3.4: Backpressure in Practice | — | — | |
+| ⬜ | Lesson 3.5: Kafka Integration | — | — | |
 | ⬜ | Exercise 3: Reactive transaction pipeline | — | — | |
 
 ---
@@ -96,13 +104,15 @@
 
 | Status | Item | Date Started | Date Completed | Notes |
 |--------|------|--------------|----------------|-------|
-| ⬜ | Lesson 5.1: Kilo Framework Basics | — | — | |
-| ⬜ | Lesson 5.2: OpenSpec Contract-First Design | — | — | |
-| ⬜ | Lesson 5.3: gRPC + WebSockets | — | — | |
-| ⬜ | Lesson 5.4: Kafka for Event-Driven Architecture | — | — | |
-| ⬜ | Lesson 5.5: Cassandra for Immutable Ledger | — | — | |
-| ⬜ | Lesson 5.6: Valkey (Sentinel) for Caching | — | — | |
-| ⬜ | Exercise 5: Deposit/withdrawal flow | — | — | |
+| ⬜ | Lesson 5.1: http4s Basics | — | — | |
+| ⬜ | Lesson 5.2: JSON (circe) and HTTP Error Responses | — | — | |
+| ⬜ | Lesson 5.3: OpenSpec Contract-First Design | — | — | |
+| ⬜ | Lesson 5.4: gRPC + WebSockets | — | — | |
+| ⬜ | Lesson 5.5: Kafka for Event-Driven Architecture | — | — | |
+| ⬜ | Lesson 5.6: Cassandra for Immutable Ledger | — | — | |
+| ⬜ | Lesson 5.7: Valkey (Sentinel) for Caching | — | — | |
+| ⬜ | Exercise 5A: Deposit/withdrawal over http4s (in-memory ledger) | — | — | |
+| ⬜ | Exercise 5B: Kafka, Cassandra and Valkey | — | — | |
 
 ---
 
